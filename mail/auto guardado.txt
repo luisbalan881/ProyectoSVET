@@ -1,0 +1,17 @@
+SELECT MAX(id_nombramiento), status, contador  from  `vs_nombramiento` where dep_f1=3
+SELECT * from vs_nombramiento where id_nombramiento=930
+
+
+SELECT * FROM `vs_nombramiento` where dep_f1=5 ORDER BY `id_nombramiento` DESC
+
+
+SELECT * FROM `vs_nombramiento` where dep_f1=13 ORDER BY `id_nombramiento` DESC
+
+
+
+SELECT MAX(contador)+1 AS con from vs_nombramiento where dep_f1=27
+
+
+
+UPDATE vs_nombramiento
+SET contador=0 WHERE dep_f1=26

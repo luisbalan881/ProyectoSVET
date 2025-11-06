@@ -1,0 +1,28 @@
+<?php
+
+require_once '../../inc/Database.php';
+
+$status=2;
+//$f="";
+$id=$_POST['c'];
+$km_fin=$_POST['dest']; //kmInicial
+$km_inicial=$_POST['kmInicial'];
+$comb=$_POST['comb'];
+$precio=$_POST['precio'];
+$recorrido=($km_fin - $km_inicial);
+$pdo = Database::connect();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$sql1 = "UPDATE vp_bitacora_vehiculo SET status=?, km_final=?,km_recorrido=?,porcentaje_comb=?, precio_comb=?
+        WHERE id_bitacora=?";  
+$q1 = $pdo->prepare($sql1);
+$q1->execute(array($status,$km_fin,$recorrido,$comb,$precio,$id));
+//Database::disconnect();
+
+$Id = $pdo->lastInsertId();
+Database::disconnect();
+echo $Id;
+
+//echo 'Updated successfully.';
+ ?>
+

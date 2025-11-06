@@ -1,0 +1,166 @@
+<?php
+  
+  // include_once 'inc/functions.php';
+  if (function_exists('login_check') && login_check()):
+    if (isset($u) && $u->hasPrivilege('crearSolicitudTransporte')):
+        include_once 'funciones_seguimiento_oficios.php';
+        $user = User::getByUserId($_SESSION['user_id']);
+        $id = $_SESSION['user_id'];
+      
+		$denuncia = denuncias();
+        $actividades = actividades();
+        $departamentosgt = departamentosgt();
+        if ($u->hasPrivilege('crearSolicitudTransporte')){
+          $actividades = actividades();
+        }else{
+            $archivos = archivos_depto($user->persona['dep_id']);
+        }
+        ?>
+   
+        <!-- Page JS Plugins CSS -->
+        <link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/datatables/jquery.dataTables.min.css"></link>
+        <link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/responsive/2.1.1/css/responsive.dataTables.min.css"></link>
+        <link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css"></link>
+        <link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/select2/select2.min.css"></link>
+
+
+
+
+        <!-- INICIO Encabezado de Pagina -->
+          <!-- FIN Encabezado de Pagina -->
+        <!-- INICIO Contenido de pagina -->
+        <div class="content content-boxed">
+            <!-- Archivo nuevo -->
+            <div class="row">
+                <?php if ($u->hasPrivilege('crearSolicitudTransporte')): ?>
+                    <!-- Ingreso Producto -->
+                    <div class="block block-themed block-rounded" id="block_hide">
+                        
+                        
+                       
+                      
+                <?php endif; ?>
+            </div>
+            <!-- END nuevo archivo -->
+            <!-- Todos los archivos -->
+            <div class="block block-themed block-rounded">
+              <div class="block-header  bg-primary">
+                  <ul class="block-options">
+                    <li>
+                         <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                      </li>
+                  </ul>
+                  <h3 class="block-title text-white">Listado de actividades </h3>
+              </div>
+              <div class="block-content">
+                      
+                       
+                      
+                         <table class="table table-bordered table-condensed table-striped js-dataTable-proyectos dt-responsive display nowrap" cellspacing="0" width="100%"> 
+                          <thead>
+                          <tr>
+                              <th class="text-center">ID</th>
+							 			<th class="text-center">Fecha y Hora de creación </th>
+							 			<th class="text-center">No de oficio</th>		
+ 										<th class="text-center">Plazo de Respuesta </th>	
+ 								      <th class="text-center">Motivo</th>  
+                              <th class="text-center">Dirigido a</th>
+                              <th class="text-center">Archivo asociado: </th>
+                              <th class="text-center">Archivo asociado: </th>                          
+                                                                                              
+                             
+                           </tr>
+
+                          </thead>
+                          <tbody>
+                          <?php
+                          foreach ($denuncia as $actividad){
+                        
+							echo '<tr '.(($actividad['estatus']==1)?'class="warning"':' ').(($actividad['estatus']==0)?'class="danger"':' ').'>';
+
+                             echo '<td class="text-left">'.$actividad['id'].'</td>'; //Departamento
+							 
+							  			$fecha = date('d-m-Y H:i:s', strtotime($actividad['fecha_creacion']));
+                             echo '<td class="text-left" style="white-space: nowrap;">'.$fecha.'</td>';
+                             
+                             echo '<td class="text-left" style="white-space: nowrap;">'.$actividad['no_oficio'].'</td>'; //Actividad
+                             
+                              $fecha = date('d-m-Y', strtotime($actividad['fecha_finalizacion']));
+                             echo '<td class="text-left" style="white-space: nowrap;">'.$fecha.'</td>';                             
+                        						   
+                             echo '<td class="text-left" style="white-space: nowrap;">'.$actividad['motivo'].'</td>'; //Actividad
+                           
+							 
+									  echo '<td class="text-left" style="white-space: nowrap;">'.$actividad['user1'].'</td>'; //Departamento
+                            
+							
+                            
+                             echo '<td class="text-left">';
+                              if($actividad['url_oficio']==NULL )
+                             {
+                               echo '<span style="white-space: nowrap;"><strong>sin archivo cargado </strong></span> <br>';// acción
+                            
+
+                               } else{
+                             echo '<span style="white-space: nowrap;"><strong>doc: </strong><a target="_blank" href="control_oficios/'.$actividad['url_oficio'].'"><button class="btn btn-xs btn-default outline" type="button" data-toggle="tooltip" title="Ver archivo"><i class="fa fa-file"></i> Ver </button></a></span> <br>';// acción
+                             } 
+                             echo '</td>';  
+                             
+                             
+                             
+                             //
+                             echo '<td class="text-center">';
+                                      if($actividad['estatus']==0)
+                                      {
+                                        echo '<span class="label label-danger">Anulado</span> </td>';
+                                      }
+                                      else if($actividad['estatus']==1){
+          
+                                        echo '<span class="label label-primary">Enviado</span> </td>';
+                                      }
+                                      else if($actividad['estatus']==2){
+                                        echo '<span class="label label-warning">Procesado</span> </td>';
+                                      }
+                                      else if($actividad['estatus']==3){
+                                        echo '<span class="label label-success">Enviado a revision</span> </td>';
+                                      }  
+                                      else if($actividad['estatus']==-1){
+                                        echo '<span class="label label-danger">No CGC Anulado</span> </td>';
+                                      }
+                          
+                             echo '</tr>'; 
+                             
+                                                                                                                     
+                          }
+
+			
+                          ?>
+                          </tbody>
+                      </table>
+              </div>
+            </div>
+            <!-- Final Todos los archivos -->
+        </div>
+        <!-- FIN Contenido de Pagina -->
+        <?php
+    else:
+        echo include(unauthorized());
+    endif;
+else:
+    header("Location: index.php");
+endif;
+?>
+
+
+<!-- CHOSEN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
+<script src="<?php echo $one->assets_folder; ?>/js/plugins/chosen/chosen.jquery.js"></script>
+<script src="<?php echo $one->assets_folder; ?>/js/plugins/chosen/docsupport/prism.js"></script>
+<script src="<?php echo $one->assets_folder; ?>/js/plugins/chosen/docsupport/init.js"></script>
+<link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/chosen/chosen.css">
+<script type="text/javascript" src="<?php echo $one->assets_folder; ?>/js/plugins/file_style/bootstrap-filestyle.min.js"> </script>
+<script>
+$('#arch_original').filestyle();
+$('#arch_firmado').filestyle();
+$('#arch_recibido').filestyle();
+</script>

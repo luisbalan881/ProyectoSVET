@@ -1,0 +1,183 @@
+<?php
+    include_once '../inc/functions.php';
+
+
+    sec_session_start();
+    $u = usuarioPrivilegiado();
+    if (function_exists('login_check') && login_check() == true) :
+        if ($u->hasPrivilege('crearSolicitudTransporte') ) :
+            $id = $_SESSION['user_id'];
+            //$fee = $_POST['fee'];
+
+            $departamentos = departamentos();
+			$usuario = usuarios();
+            $persona = User::getByUserId($id);
+           // if ( !empty($_POST)) {
+            //  cambiarStadoProyecto ($id);
+           // header("Location: index.php?ref=_53");
+         // }
+
+
+                //$dias = tipos_dias_laborales();
+
+
+
+        ?>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <title>control de oficios:</title>
+
+            <script src="assets/js/plugins/chosen/chosen.jquery.js"></script>
+            <script src="assets/js/plugins/chosen/docsupport/prism.js"></script>
+            <script src="assets/js/plugins/chosen/docsupport/init.js"></script>
+            <link rel="stylesheet" href="assets/js/plugins/chosen/chosen.css">
+            <link rel="stylesheet" href="assets/js/plugins/bootstrap-datepicker/datepicker33.min.css">
+
+
+
+
+
+            <script src="assets/js/plugins/timepicker/js/timepicki.js"></script>
+            <link href="assets/js/plugins/timepicker/css/timepicki.css" rel="stylesheet">
+
+            <script src="assets/js/pages/validar_proyecto.js"></script>
+            <script src="transporte/js/funciones.js"></script>
+
+            <script src="assets/js/plugins/jspdf/jspdf.js"></script>
+            <script src="assets/js/plugins/jspdf/pdfFromHTML.js"></script>
+            <link href="https://fonts.googleapis.com/css?family=Chau+Philomene+One|Fredoka+One" rel="stylesheet">
+
+        </head>
+        <body>
+          <div class="">
+            <div class="">
+
+              <!--<div class="tag-green">Solicitar Transporte</div>-->
+              <div class="">
+                  <ul class="block-options2" style="margin-top:10px; margin-right:9px;">
+                      <li>
+                          <button data-dismiss="modal" type="button" ><i class="btn-circle"></i></button>
+                      </li>
+                  </ul>
+
+
+              </div>
+
+
+            </div>
+            <div class="block-content ">
+              <form id="SolicitudForm" class="js-validation-solicitud form-horizontal form-style-10" action="control_oficios/nuevo_seguimiento_usuario.php" method="POST" enctype="multipart/form-data">
+                <h1>Control de oficios SVET<span>Formulario para ingreso de control de oficios</span></h1>
+                <!--   <div class="form-group">
+                      <div class="col-xs-12">
+                          <div class="form-material">
+                              <!--<input class="js-tags-input form-control" type="text" id="destinatarios" name="destinatarios" value="" required>-->
+
+                           <!--   <label for="destinatarios">Ingrese Numero de oficos*</label>
+                              <div class="input-group has-personalizado">
+                                <span class="input-group-addon" ><span class="fa fa-bank"></span></span>
+                                <select name="tipo_denuncia" id="tipo_denuncia"  multiple="multiple" data-placeholder="Seleccione uno tipo de denuncia" class="chosen-select-width col-xs-12 form-control" multiple tabindex="6" required>
+									<option value="1">Denuncia de Etica</option>
+									<option value="2">Denucia Corrupción</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>-->
+				  
+				  
+				   <div class="form-group">
+                      
+                  </div> 
+                  
+                 
+				  
+                  <div class="form-group">
+                     
+ 
+                 
+           
+
+                      <div class="form-group">
+                    <div class="col-xs-12">
+
+                          <div class="has-personalizado">
+                            <label for="objetivo">Observaciones (Campo obligatorio)</label>
+                            <div class="input-group has-personalizado">
+                              <span class="input-group-addon" ><span class="si si-pencil"></span></span>
+                              <textarea class="form-control" id="observaciones" name="observaciones" maxlength="225" rows="2" required></textarea>
+                            </div>
+
+
+                          </div>
+
+                    </div>
+                  </div>
+
+                 <!--  <div class="form-group">
+                    <div class="col-xs-12">
+
+                          <div class="has-personalizado">
+                            <label for="soli_desc">Descripción de lo sucedido (Campo obligatorio)</label>
+                            <div class="input-group has-personalizado">
+                              <span class="input-group-addon" ><span class="si si-pencil"></span></span>
+                              <textarea class="form-control" id="soli_desc" name="soli_desc" rows="3" required></textarea>
+                            </div>
+
+
+                          </div>
+
+                    </div>
+                  </div> -->
+				
+                  
+                  
+                  <div class="form-group">
+    <div class="col-xs-12">
+        <div class="has-personalizado">
+            <label for="archivo">Archivo</label>
+            <div class="input-group has-personalizado">
+                <span class="input-group-addon">
+                    <span class="si si-pencil" aria-hidden="true"></span>
+                    <span class="sr-only">Seleccionar archivo</span>
+                </span>
+                <input type="file" id="archivo" name="archivo" multiple aria-label="Archivo" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                 <div class="form-group">
+                                    <div class="col-xs-12 text-center">
+                                        <button class="btn btn-sm btn-primary btn-block" type="submit"><i class=""></i>Responder </button>
+                                    </div>
+                                </div>
+                </form>
+
+            </div>
+          </div>
+          <!-- Page JS Code -->
+          <script>
+              jQuery(function(){
+                  // Init page helpers (BS  Select2 Inputs plugins)
+                  App.initHelpers(['datepicker','select2']);
+              });
+
+              $('#soli_salida1').timepicki();
+            </script>
+
+        </body>
+
+        </html>
+
+        <?php
+      else :
+            echo include(unauthorizedModal());
+        endif;
+    else:
+       //echo "<script type='text/javascript'> window.location='../index.ph'; </script>";
+    endif;
+?>

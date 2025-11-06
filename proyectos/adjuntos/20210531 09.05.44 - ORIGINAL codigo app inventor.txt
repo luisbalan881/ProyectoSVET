@@ -1,0 +1,50 @@
+
+
+// para agregar una actividad en app inventor
+
+en propiedades
+android.intent.action.view
+
+
+//
+// 
+github
+soporteti1
+rTES+25g1
+
+// otro codigo 
+
+
+
+
+
+
+pagina para iconos 
+
+lin youtub git
+https://www.youtube.com/watch?v=hWglK8nWh60
+
+
+para descargar git para windows y otras versiones
+https://git-scm.com/
+
+manual 
+https://bluuweb.github.io/tutorial-github/guia/
+
+
+ git version
+git status -s
+git add index.html
+git status -s
+git commit -m "agregamos el index.html"
+
+git commit -m "agregamos el index.html"
+
+// git config --global user.email "marvingarcia16@gmail.com"
+// git config --global user.name "MarvinGarcia16"
+// git commit -m "agregamos el index.html"
+
+
+git remote add origin https://github.com/Marvinj777/ProyectoFAK.git
+git push -u origin main
+

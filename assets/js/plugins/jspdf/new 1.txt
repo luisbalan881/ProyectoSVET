@@ -1,0 +1,1 @@
+select fac_serie, fac_num, fac_fecha, fact_1h from alm_factura

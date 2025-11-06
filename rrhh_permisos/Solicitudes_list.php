@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MIS SOLICITOS DE VACACIONES</title>
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/datatables/jquery.dataTables.min.css">
+    <script src="assets/js/plugins/jspdf/jspdf.js"></script>
+    
+    
+            <script src="assets/js/plugins/chosen/chosen.jquery.js"></script>
+            <script src="assets/js/plugins/chosen/docsupport/prism.js"></script>
+            <script src="assets/js/plugins/chosen/docsupport/init.js"></script>
+            <link rel="stylesheet" href="assets/js/plugins/chosen/chosen.css">
+            <link rel="stylesheet" href="assets/js/plugins/bootstrap-datepicker/datepicker33.min.css">
+
+
+
+
+
+            <script src="assets/js/plugins/timepicker/js/timepicki.js"></script>
+            <link href="assets/js/plugins/timepicker/css/timepicki.css" rel="stylesheet">
+
+            <script src="assets/js/pages/solicitud_form_validate1.js"></script>
+            <script src="assets/js/pages/solicitud_form_validate2.js"></script>
+            <script src="transporte/js/funciones.js"></script>
+			 <script src="assets/js/plugins/jspdf/pdfFromHTML2Justificacion.js"></script>
+            <script src="assets/js/plugins/jspdf/pdfFromHTML.js"></script>
+            <script src="assets/js/plugins/jspdf/pdfFromHTMLPermisos.js"></script>
+           
+            <script src="assets/js/plugins/jspdf/solicitud_cupones.js"></script>
+			<script src="viaticos/js/load_solicitud.js"></script>
+
+    
+</head>
+<body>
+<?php
+if (function_exists('login_check') && login_check()):
+   //  if (usuarioPrivilegiado()->hasPrivilege('leerViaticos')) :
+    //$personas = personas();
+        $user_id =$_SESSION['user_id'];
+        include_once 'funciones_permisos.php';
+        $solicitud_permiso = permiso_salida3($user_id);
+
+    // $nombramientos = nombramientos();
+?>
+  <!-- INICIO Encabezado de Pagina -->
+ <div class="content bg-gray-lighter">
+     <div class="row items-push">
+         <div class="col-sm-7">
+             <h1 class="page-heading">
+                 SOLICITUDES DE PERMISOS
+             </h1>
+         </div>
+         <div class="col-sm-5 text-right hidden-xs">
+             <ol class="breadcrumb push-10-t">
+                 <li>CONTROL DE MIS SOLICITUDES</li>
+                 <li><a class="link-effect" href="#">MIS PERMISOS</a></li>
+             </ol>
+         </div>
+     </div>
+ </div>
+ <!-- FIN Encabezado de Pagina -->
+ <!-- INICIO Contenido de pagina -->
+ <div class="content content-boxed">
+     <!-- Todos los Productos -->
+     <div class="block">
+         <div class="block-header bg-gray-lighter">
+           <ul class="block-options">
+               <li>
+                   <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+               </li>
+           </ul>
+           <h3 class="block-title">Listado de mis solicitudes</h3>
+         </div>
+         <div class="block-content">
+             <table class="table table-bordered table-condensed table-striped js-dataTable-directorio" >
+                 <thead>
+                     <tr>
+                         <th class="hidden-xs">ID Solicitud</th>
+						 
+						 <th class="text-center">Fecha de cración.</th>
+						 <th class="text-center">Soli</th>
+                         <th>Motivo</th>
+
+                         
+                         <th class="hidden-xs text-center">Fecha Solicitada</th>
+						 <th class="hidden-xs text-center">Hora inicio</th>
+						  <th class="hidden-xs text-center">hora fin</th>
+                         <th class="hidden-xs text-center">Duración.</th>
+						  <th class="hidden-xs text-center">Tiempo en:</th>
+						   					
+                         <th class="hidden-xs text-center">Acción</th>
+                          <th class="hidden-xs text-center">Acción</th>
+						 <th class="hidden-xs text-center">Estado de solicitud</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <?php
+                     
+                       foreach ($solicitud_permiso as $nombramiento){
+                                         echo '<tr>';
+                                echo '<td class="hidden-xs">'.$nombramiento['id_solicitud_salida'].'</td>';
+                                echo '<td class="hidden-xs">'.$nombramiento['user'].'</td>';
+                                echo '<td class="text-center">'.fecha_dmy($nombramiento['fecha_solicitud']).'</td>';
+                                echo '<td class="hidden-xs">'.($nombramiento['justificacion']).'</td>';
+                                                     
+                                echo '<td class="hidden-xs">'.fecha_dmy($nombramiento['fecha']).'</td>';
+								echo '<td class="hidden-xs">'.($nombramiento['hora_inicio']).'</td>';
+								echo '<td class="hidden-xs">'.($nombramiento['Hora_fin']).'</td>';
+								echo '<td class="hidden-xs">'.$nombramiento['duracion'].'</td>';
+								
+								echo '<td class="hidden-xs">'.$nombramiento['tipo_tiempo'].'</td>';												 
+								 
+								 	echo '<td class="text-center" style="white-space: nowrap;">';
+                            echo '<div class="btn-group">';
+																			
+								   if ($nombramiento['status'] == 1 ){
+                                   {
+                                // echo '<span data-toggle="tooltip" title="Autorizar"><a class="btn btn-default"  title="validar permiso"  data-toggle="modal" data-target="#modal-remoto" href="rrhh_permisos/solicitar_permiso_aprobacion.php?id='.$nombramiento['id_solicitud'].'"><i class="fa fa-check-square" aria-hidden="true"></i></a></span>';
+							//	echo '<span data-toggle="tooltip" title="Editar Solicitud"><a class="btn btn-default"  title="Editar solicitud"  data-toggle="modal" data-target="#modal-remoto-lgg" href="rrhh_permisos/solicitar_permiso2_editable.php?id='.$nombramiento['id_solicitud_salida'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></span>';
+							//	echo '<span data-toggle="tooltip" title="Eliminar Solicitud"><a class="btn btn-default"  title="Anular solicitud"  data-toggle="modal" data-target="#modal-remoto-lgg" href="rrhh_permisos/solicitar_anulacion_permiso.php?id='.$nombramiento['id_solicitud_salida'].'"><i class="fa fa-trash" aria-hidden="true"></i></a></span>';
+
+                                  }
+								
+                                }  
+                                  
+                                else if ($nombramiento['status'] == 2 ){
+                                    echo '<span class="hidden-xs">solicitud Aceptada por RRHH</span> </td>';
+                                    
+									
+							
+                                }
+																					
+							
+							echo ' ';
+                            echo '</div>';
+                            echo '</td>';
+								 
+								 
+                                 echo '<td class="text-center" style="white-space: nowrap;">';
+                            echo '<div class="btn-group">';
+							
+							
+							echo '<button title="Imprimir Solicitud" class="btn btn-personalizado outline" title="Descargar" ';
+                             if ($nombramiento['status'] == 1)
+                                {
+                                 echo 'onclick="HTMLtoPDF1('.$nombramiento['id_solicitud_salida'].')"';
+                                 
+                                }
+                                else {
+                                    
+                                    echo'disabled';
+                                }
+                                echo '><i class="fa fa-download"></i></button>';
+															
+					               if ($nombramiento['status'] == 0 ){
+                                    echo '<span class="label label-danger"> Solicitud Anulada</span> </td>';
+                                    //echo'-liquidado';
+                                }  
+                                  
+                                else if ($nombramiento['status'] == 1 ){
+                                    echo '<span class="label label-primary">Solicitud Generada</span> </td>';
+                                    //echo'-liquidado';
+									
+							
+                                }
+								else if ($nombramiento['status'] == 2 ){
+                                    echo '<span class="label label-success">Solicitud Aceptada</span> </td>';
+                                    //echo'-liquidado';
+									
+							
+                                }
+									
+								echo '<td class="text-center" style="white-space: nowrap;">';
+                            echo '<div class="btn-group">';
+							
+								
+								
+                                
+                                 
+                            echo ' ';
+                            echo '</div>';
+                            echo '</td>';
+                            echo '</tr>';
+      
+                                
+                                
+                            //}
+                         }
+                     ?>
+                 </tbody>
+             </table>
+         </div>
+     </div>
+     <!-- Final Todos los Productos -->
+ </div>
+ <!-- FIN Contenido de Pagina -->
+ 
+<?php else : ?>
+    <p>
+         <span class="error">Usted no esta autorizado para acceder a esta pagina.</span> Por favor <a href="index.php">inicie sesión</a>.
+    </p>
+<?php endif; ?>
+    
+    
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?php
+
+require_once '../../inc/Database.php';
+
+//$status=3;
+
+
+$status=2;
+//$f="";
+$id=$_POST['codigo'];
+
+// query SELECT MAX(correlativo)+1 as contador FROM `da_solicitud_compra`
+
+
+
+
+
+$pdo = Database::connect();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//, fecha_liquidacion
+
+$sql1 = "UPDATE da_solicitud_compra SET correlativo=?
+        WHERE id_solicitud_compra=?";  
+$q1 = $pdo->prepare($sql1);
+$q1->execute(array($con1,$id));
+Database::disconnect();
+
+echo 'Updated successfully.';
+ ?>

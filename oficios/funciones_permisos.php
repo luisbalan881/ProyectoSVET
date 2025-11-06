@@ -1,0 +1,25 @@
+<?php
+/**
+ * User: Marvin Garcia
+ * Date: 18/05/2024
+ * Time: 3:53 PM
+ * @param $fecha
+ * @return bool|string
+ */
+// 
+
+
+//funciones de renglones
+function oficios(){
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "SELECT ds_oficios.id_oficio, ds_oficios.id_user ,CONCAT (vp_user.user_nm1,' ', vp_user.user_ap1) as solicitante,ds_oficios.fecha_creaacion, ds_oficios.estatus, ds_oficios.institucion_destino, ds_oficios.asunto,  ds_oficios.no_ofi  FROM `ds_oficios`
+    join vp_user on ds_oficios.id_user=vp_user.user_id join vp_deptos on ds_oficios.id_dep=vp_deptos.dep_id ORDER BY ds_oficios.id_oficio DESC";
+    $r = $pdo->prepare($sql);
+    $r->execute();
+    $oficios = $r->fetchAll();
+    Database::disconnect();
+    return $oficios;
+}
+
+

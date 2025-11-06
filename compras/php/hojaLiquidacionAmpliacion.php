@@ -1,0 +1,244 @@
+<?php
+include_once '../../inc/functions.php';
+require_once '../../inc/Database.php';
+require_once 'get_solicitudes.php';
+
+$id=$_POST['solicitud'];
+
+$solicitud = get_solicitud_by_id($id);
+$solicitud_detalle = get_solicitud_by_id2($id);
+//$solicitud1 = get_solicitud_by_id_solicitante($id);
+//$solicitud2 = get_solicitud_by_id_encargado($id);
+//$solicitud3 = get_solicitud_by_id_total($id);  // esto menos
+//$solicitud4 = get_solicitud_by_id_descripcion($id);//
+//$solicitud5 = get_solicitud_by_id_descripcion($id);//
+//$solicitud6 = get_solicitud_by_id_dia($id);
+//$solicitud7 = get_formulario($id);
+
+
+$solicitud_compra = get_solicitud_by_id_descripcion3($id); // esto total_liq
+
+
+$complemento = get_complemento($id);
+//$solicitud9 = get_solicitud_by_id_total_liquidacion($id);  // lo solicitado
+//$liquidado = get_liquidados($id);
+$tipod='Minutos';
+if($solicitud['TIPO_D']==1)
+{
+  $tipod='Hora(s)';
+}
+else if($solicitud['TIPO_D']==2){
+  $tipod='Dia(s)';
+}
+
+$a = get_vehiculo_by_id($id);
+
+$b = get_nombre_conductor($a['conductor_id']);
+$c = get_nombre_vehiculo($a['vehiculo_id']);
+
+
+$des='';
+$mot='';
+$ve='';
+$pi='';
+$n2=30;
+if($solicitud['DESTINO']!=''){
+  $des=$solicitud['DESTINO'];
+  $mot=$solicitud['MOTIVO'];
+  $ve=$b['VEHICULO'];
+  $pi=$c['NOMBRE'];
+}
+
+$detalle1='';
+$detalle11='';
+$detalle111='';
+$detalle1111='';
+$c1='';
+$array=array();
+//$id2 = 921;
+$det = get_solicitud_by_id33($id);
+foreach ($det as $c)
+{
+  if($c['clasificacion_compra']!=''){
+
+    //$array[]='Destino : '.$c['destino'].',   detalle1 : '.$c['motivo'].'/';
+    //$detalle1 = $array;                   
+    $detalle1 =$c['1'].'                 '.$c['2'].'          '.$c['3'].'                   '.$c['4'];  
+    
+    $detalle11 =$c['5'];
+     $detalle111 =$c['6'];
+     $detalle1111 =$c['7'].'            '.$c['8'];
+     
+  } 
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    //$comision .='Descripcion : '.$c['descripcion'].',   Dia : '.$c['dia'].'f7';
+    
+    
+    
+  
+}
+
+////////////////////
+
+$detalle3='';
+$detalle33='';
+$detalle333='';
+$detalle3333='';
+$c3='';
+//$array=array();
+//$id2 = 921;
+$det3 = get_solicitud_by_id34($id);
+foreach ($det3 as $c3)
+{
+  //if($c3['clasificacion_compra']!=''){
+
+    //$array[]='Destino : '.$c['destino'].',   detalle1 : '.$c['motivo'].'/';
+    //$detalle1 = $array;                   
+    $detalle3 =$c3['1'].'                 '.$c3['2'].'          '.$c3['3'].'                   '.$c3['4'];  
+    
+    $detalle33 =$c3['5'];
+     $detalle333 =$c3['6'];
+     $detalle3333 =$c3['7'].'            '.$c3['8'];
+     
+  //} 
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    //$comision .='Descripcion : '.$c['descripcion'].',   Dia : '.$c['dia'].'f7';
+    
+    
+    
+  
+}
+
+
+
+///////////////////
+
+
+$detalle2='';
+$detalle22='';
+$comi2 = get_solicitud_by_id33($id);
+foreach ($comi2 as $c1)
+{
+  if($c1['clasificacion_compra']!=''){
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    $detalle2 =$c1['5'].'         '.$c1['6'].'         '.$c1['7'];
+    $detalle22 .=$c1['6'];
+  } 
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    //$comision .='Descripcion : '.$c['descripcion'].',   Dia : '.$c['dia'].'f7';
+    
+    
+    
+  
+}
+
+/*
+foreach ($solicitud3 as $t1)
+{
+  
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    $res1= $t1['total'];
+  
+}
+ 
+ foreach ($solicitud_compra as $t2)
+{
+  
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    $res2 =$t2['total_liq'];
+  
+} 
+
+$res= ($res1-$res2);
+
+*/
+
+
+/*
+$var = get_totales($id);
+foreach ($var as $d)
+{
+  
+
+    //$array[]='Destino : '.$c['destino'].',   Comision : '.$c['motivo'].'/';
+    //$comision = $array;
+    $det =$d['total'];
+   
+
+  
+} */
+
+
+$return_arr = array(
+                  //  'correlativo'=>$solicitud1['cod_nombramiento'],
+                   // 'departamentos'=>$solicitud1['dep_nm'],
+                 //  'caracteristicas'=>$solicitud_detalle['caracteristicas'], //vp_user.partida_presupuestaria
+                   // 'partida'=>$solicitud1['partida_presupuestaria'],
+                 //   'fecha'=>fecha_dmy($solicitud1['fecha_inicio']),
+                //    'fecha2'=>fecha_dmy($solicitud1['fecha_fin']),
+                 //   'fecha1'=>fecha_dmy($solicitud1['fecha']),  //vp_user.sueldo_total
+
+                    //'salida'=>$solicitud['SALIDA'],
+                    //'duracion'=>$solicitud['DURACION'],
+                     //'lugar1'=>$solicitud1['lugar'],
+                    //'tipo_duracion'=>$tipod,
+                   // 'Total'=>$solicitud3['total'], 
+					// 'Totalsolicitado'=>$solicitud9['totalSolicitado'], 
+                 //   'Total2'=>$solicitud6['totald'], 
+                   // 'id1'=>$solicitud7['id_viatico'], //
+                   // 'autorizado'=>$solicitud2['encargado'],
+                 //   'solicitante'	=>$solicitud['NOMBRE'],
+                    // 'autorizado2'=>$solicitud1['nombre'],
+                      // 'puesto'=>$solicitud1['user_puesto'],
+                     //   'nit'=>$solicitud1['user_nit'],
+                      // 'puesto2'=>$solicitud2['user_puesto'],
+                        // 'desa'=>$solicitud_compra['solicitante'],//almu
+                         'departamento'=>$solicitud_compra['dep_nm'],
+                          'clasificacion'=>$solicitud_compra['clasificacion'],//almu
+                         'observaciones'=>$solicitud_compra['observaciones'],
+                      //   'tgas'=>$solicitud_compra['estado_solicitud'],
+                        // 'complemento'=>$complemento['total'],
+                       //'desayuno'=>$liquidado['tdesayunos'],
+                      // 'resu'=>$res,
+                   // 'solicitante2'=>$sol doc.setFontType("normal");icitud1['user_ap1'],
+                    'caracteristicas'=>$detalle1,
+                    'caracteristicas2'=>$detalle11,
+                    'caracteristicas3'=>$detalle111,
+                    'caracteristicas4'=>$detalle1111,
+                    
+                    
+						  'caracteristicas31'=>$detalle3,
+                    'caracteristicas32'=>$detalle33,
+                    'caracteristicas33'=>$detalle333,
+                    'caracteristicas34'=>$detalle3333,                    
+                    
+                    
+                     'caracteristicas5'=>$detalle22,
+                    // 'destino2'=>$det,
+                    //'destino'=>$solicitud1['objetivo'],
+                   // 'obj'=>$solicitud1['objetivo'],
+                    // 'descripcion2'=>$solicitud5['descripcion'],
+                     'fecha'=>$solicitud_compra['fecha_creacion'],
+                    //  'fechaf'=>fecha_dmy($solicitud7['fecha_liquidacion']),
+                  //  'motivo'=>$mot,
+                  //  'piloto'=>$pi,
+                   // 'vehiculo'=>$ve,
+                   // 'fecha_creacion'=>date('d-m-Y H:m:s', strtotime($solicitud1['fecha']))
+                  );
+
+echo json_encode($return_arr);
+
+?>
+

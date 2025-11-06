@@ -1,0 +1,2498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - vicepresidencia@localhost" uuid="9f314dd8-b0c3-43c1-9669-25a41cdb567f">
+    <database-info product="MySQL" version="5.5.5-10.1.9-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="vicepresidencia">
+        <visible>1</visible>
+      </schema>
+      <table id="2" parent="1" name="alm_egreso"/>
+      <table id="3" parent="1" name="alm_egreso_historial"/>
+      <table id="4" parent="1" name="alm_factura"/>
+      <table id="5" parent="1" name="alm_factura_historial"/>
+      <table id="6" parent="1" name="alm_ingreso"/>
+      <table id="7" parent="1" name="alm_ingreso_historial"/>
+      <table id="8" parent="1" name="alm_medida"/>
+      <table id="9" parent="1" name="alm_medida_categoria"/>
+      <table id="10" parent="1" name="alm_medida_historial"/>
+      <table id="11" parent="1" name="alm_producto"/>
+      <table id="12" parent="1" name="alm_producto_historial"/>
+      <table id="13" parent="1" name="alm_renglon"/>
+      <table id="14" parent="1" name="alm_renglon_historial"/>
+      <table id="15" parent="1" name="alm_requisicion"/>
+      <table id="16" parent="1" name="alm_requisicion_historial"/>
+      <table id="17" parent="1" name="df_proveedor"/>
+      <table id="18" parent="1" name="vp_deptos"/>
+      <table id="19" parent="1" name="vp_login"/>
+      <table id="20" parent="1" name="vp_loginhistorial"/>
+      <table id="21" parent="1" name="vp_permisos"/>
+      <table id="22" parent="1" name="vp_role_perm"/>
+      <table id="23" parent="1" name="vp_roles"/>
+      <table id="24" parent="1" name="vp_user"/>
+      <table id="25" parent="1" name="vp_user_historial"/>
+      <table id="26" parent="1" name="vp_user_role"/>
+      <table id="27" parent="1" name="alm_kardex"/>
+      <table id="28" parent="1" name="alm_kardex_historial"/>
+      <table id="29" parent="1" name="df_proveedor_historial"/>
+      <column id="30" parent="2" name="egr_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="31" parent="2" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="32" parent="2" name="egr_cant">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="33" parent="2" name="egr_fecha">
+        <mandatory>1</mandatory>
+        <data-type>date|0</data-type>
+      </column>
+      <column id="34" parent="2" name="req_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="35" parent="2" name="ing_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="36" parent="2" name="egr_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="37" parent="2" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="38" parent="2" name="egr_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="39" parent="2" name="egr_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="40" parent="2" name="PRIMARY">
+        <columns>egr_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="41" parent="2" name="alm_egreso_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="42" parent="2" name="alm_egreso_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="43" parent="2" name="alm_egreso_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="44" parent="3" name="egr_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="45" parent="3" name="egr_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="46" parent="3" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="47" parent="3" name="egr_cant">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="48" parent="3" name="egr_fecha">
+        <mandatory>1</mandatory>
+        <data-type>date|0</data-type>
+      </column>
+      <column id="49" parent="3" name="req_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="50" parent="3" name="ing_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="51" parent="3" name="egr_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="52" parent="3" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="53" parent="3" name="egr_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="54" parent="3" name="egr_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="55" parent="3" name="PRIMARY">
+        <columns>egr_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="56" parent="4" name="fac_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="57" parent="4" name="fac_serie">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="58" parent="4" name="fac_num">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="59" parent="4" name="fac_fecha">
+        <mandatory>1</mandatory>
+        <data-type>date|0</data-type>
+      </column>
+      <column id="60" parent="4" name="prov_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="61" parent="4" name="orden_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="62" parent="4" name="fac_1h">
+        <mandatory>1</mandatory>
+        <data-type>int(5) unsigned zerofill|0</data-type>
+      </column>
+      <column id="63" parent="4" name="fac_control">
+        <mandatory>1</mandatory>
+        <data-type>int(5) unsigned zerofill|0</data-type>
+      </column>
+      <column id="64" parent="4" name="fac_desc">
+        <mandatory>1</mandatory>
+        <data-type>mediumtext|0</data-type>
+      </column>
+      <column id="65" parent="4" name="fac_descuento">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="66" parent="4" name="fac_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="67" parent="4" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="68" parent="4" name="fac_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="69" parent="4" name="fac_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="70" parent="4" name="PRIMARY">
+        <columns>fac_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="71" parent="4" name="alm_factura_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="72" parent="4" name="alm_factura_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="73" parent="4" name="alm_factura_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="74" parent="5" name="fac_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="75" parent="5" name="fac_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="76" parent="5" name="fac_serie">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="77" parent="5" name="fac_num">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="78" parent="5" name="fac_fecha">
+        <mandatory>1</mandatory>
+        <data-type>date|0</data-type>
+      </column>
+      <column id="79" parent="5" name="prov_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="80" parent="5" name="orden_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="81" parent="5" name="fac_1h">
+        <mandatory>1</mandatory>
+        <data-type>int(5) unsigned zerofill|0</data-type>
+      </column>
+      <column id="82" parent="5" name="fac_control">
+        <mandatory>1</mandatory>
+        <data-type>int(5) unsigned zerofill|0</data-type>
+      </column>
+      <column id="83" parent="5" name="fac_desc">
+        <mandatory>1</mandatory>
+        <data-type>mediumtext|0</data-type>
+      </column>
+      <column id="84" parent="5" name="fac_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="85" parent="5" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="86" parent="5" name="fac_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="87" parent="5" name="fac_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="88" parent="5" name="PRIMARY">
+        <columns>fac_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="89" parent="6" name="ing_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="90" parent="6" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="91" parent="6" name="ing_desc">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="92" parent="6" name="ing_cant">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="93" parent="6" name="ing_costo">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="94" parent="6" name="ing_descuento">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="95" parent="6" name="fac_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="96" parent="6" name="folio_alm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="97" parent="6" name="folio_inv">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="98" parent="6" name="nom_id">
+        <comment>Nomenclatura de Cuentas</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="99" parent="6" name="ing_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="100" parent="6" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="101" parent="6" name="ing_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="102" parent="6" name="ing_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="103" parent="6" name="PRIMARY">
+        <columns>ing_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="104" parent="6" name="alm_ingreso_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="105" parent="6" name="alm_ingreso_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="106" parent="6" name="alm_ingreso_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="107" parent="7" name="ing_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="108" parent="7" name="ing_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="109" parent="7" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="110" parent="7" name="ing_desc">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="111" parent="7" name="ing_cant">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="112" parent="7" name="ing_costo">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,5) unsigned|0</data-type>
+      </column>
+      <column id="113" parent="7" name="fac_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="114" parent="7" name="folio_alm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="115" parent="7" name="folio_inv">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="116" parent="7" name="nom_id">
+        <comment>Nomenclatura de Cuentas</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="117" parent="7" name="ing_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="118" parent="7" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="119" parent="7" name="ing_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="120" parent="7" name="ing_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="121" parent="7" name="PRIMARY">
+        <columns>ing_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="122" parent="8" name="med_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="123" parent="8" name="med_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="124" parent="8" name="med_cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="125" parent="8" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="126" parent="8" name="med_status">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="127" parent="8" name="med_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="128" parent="8" name="med_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="129" parent="8" name="PRIMARY">
+        <columns>med_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="130" parent="8" name="alm_medida_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="131" parent="8" name="alm_medida_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="132" parent="8" name="alm_medida_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="133" parent="9" name="med_cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="134" parent="9" name="med_cat_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="135" parent="9" name="vp_user">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="136" parent="9" name="med_cat_status">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="137" parent="9" name="med_cat_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="138" parent="9" name="med_cat_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="139" parent="9" name="PRIMARY">
+        <columns>med_cat_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="140" parent="10" name="med_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="141" parent="10" name="med_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="142" parent="10" name="med_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)|0</data-type>
+      </column>
+      <column id="143" parent="10" name="med_cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="144" parent="10" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="145" parent="10" name="med_status">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="146" parent="10" name="med_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="147" parent="10" name="med_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="148" parent="10" name="PRIMARY">
+        <columns>med_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="149" parent="11" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="150" parent="11" name="renglon_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="151" parent="11" name="prod_cod">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="152" parent="11" name="prod_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="153" parent="11" name="prod_desc">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="154" parent="11" name="med_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="155" parent="11" name="prod_min">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="156" parent="11" name="prod_max">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="157" parent="11" name="prod_status">
+        <mandatory>1</mandatory>
+        <data-type>int(2)|0</data-type>
+      </column>
+      <column id="158" parent="11" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="159" parent="11" name="prod_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="160" parent="11" name="prod_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>datetime|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="161" parent="11" name="PRIMARY">
+        <columns>prod_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="162" parent="11" name="alm_producto_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="163" parent="11" name="alm_producto_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="164" parent="11" name="alm_producto_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="165" parent="12" name="prod_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="166" parent="12" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="167" parent="12" name="renglon_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="168" parent="12" name="prod_cod">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="169" parent="12" name="prod_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="170" parent="12" name="prod_desc">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="171" parent="12" name="med_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="172" parent="12" name="prod_min">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="173" parent="12" name="prod_max">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="174" parent="12" name="prod_status">
+        <mandatory>1</mandatory>
+        <data-type>int(2)|0</data-type>
+      </column>
+      <column id="175" parent="12" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="176" parent="12" name="prod_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="177" parent="12" name="prod_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>datetime|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="178" parent="12" name="PRIMARY">
+        <columns>prod_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="179" parent="13" name="renglon_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="180" parent="13" name="renglon_cod">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="181" parent="13" name="renglon_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="182" parent="13" name="renglon_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="183" parent="13" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="184" parent="13" name="renglon_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="185" parent="13" name="renglon_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="186" parent="13" name="PRIMARY">
+        <columns>renglon_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="187" parent="13" name="alm_renglon_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="188" parent="13" name="alm_renglon_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="189" parent="13" name="alm_renglon_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="190" parent="14" name="renglon_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="191" parent="14" name="renglon_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="192" parent="14" name="renglon_cod">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="193" parent="14" name="renglon_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="194" parent="14" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="195" parent="14" name="renglon_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="196" parent="14" name="renglon_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="197" parent="14" name="PRIMARY">
+        <columns>renglon_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="198" parent="15" name="req_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="199" parent="15" name="req_num">
+        <mandatory>1</mandatory>
+        <data-type>int(6) unsigned zerofill|0</data-type>
+      </column>
+      <column id="200" parent="15" name="req_user">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="201" parent="15" name="dep_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="202" parent="15" name="req_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="203" parent="15" name="req_fecha">
+        <mandatory>1</mandatory>
+        <data-type>date|0</data-type>
+      </column>
+      <column id="204" parent="15" name="req_obs">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="205" parent="15" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="206" parent="15" name="req_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="207" parent="15" name="req_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="208" parent="15" name="PRIMARY">
+        <columns>req_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="209" parent="15" name="alm_requisicion_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="210" parent="15" name="alm_requisicion_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="211" parent="15" name="alm_requisicion_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="212" parent="16" name="req_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="213" parent="16" name="req_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="214" parent="16" name="req_num">
+        <mandatory>1</mandatory>
+        <data-type>int(6) unsigned zerofill|0</data-type>
+      </column>
+      <column id="215" parent="16" name="req_user">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="216" parent="16" name="dep_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="217" parent="16" name="req_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="218" parent="16" name="req_fecha">
+        <mandatory>1</mandatory>
+        <data-type>date|0</data-type>
+      </column>
+      <column id="219" parent="16" name="req_obs">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="220" parent="16" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="221" parent="16" name="req_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="222" parent="16" name="req_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="223" parent="16" name="PRIMARY">
+        <columns>req_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="224" parent="17" name="prov_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="225" parent="17" name="prov_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="226" parent="17" name="prov_nit">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)|0</data-type>
+      </column>
+      <column id="227" parent="17" name="prov_direccion">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="228" parent="17" name="prov_tel">
+        <mandatory>1</mandatory>
+        <data-type>int(8) unsigned|0</data-type>
+      </column>
+      <column id="229" parent="17" name="prov_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="230" parent="17" name="prov_desc">
+        <mandatory>1</mandatory>
+        <data-type>mediumtext|0</data-type>
+      </column>
+      <column id="231" parent="17" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="232" parent="17" name="prov_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="233" parent="17" name="prov_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="234" parent="17" name="prov_historial">
+        <mandatory>1</mandatory>
+        <data-type>datetime(6)|0</data-type>
+      </column>
+      <key id="235" parent="17" name="PRIMARY">
+        <columns>prov_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="236" parent="17" name="df_proveedor_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="237" parent="17" name="df_proveedor_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="238" parent="17" name="df_proveedor_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="239" parent="18" name="dep_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="240" parent="18" name="dep_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="241" parent="18" name="ofi_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10)|0</data-type>
+      </column>
+      <key id="242" parent="18" name="PRIMARY">
+        <columns>dep_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="243" parent="19" name="login_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="244" parent="19" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="245" parent="19" name="login_computer">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="246" parent="19" name="login_ip">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)|0</data-type>
+      </column>
+      <column id="247" parent="19" name="login_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="248" parent="19" name="PRIMARY">
+        <columns>login_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="249" parent="20" name="login_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="250" parent="20" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="251" parent="20" name="login_fecha">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <key id="252" parent="20" name="PRIMARY">
+        <columns>login_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="253" parent="21" name="perm_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="254" parent="21" name="perm_desc">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <key id="255" parent="21" name="PRIMARY">
+        <columns>perm_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="256" parent="22" name="role_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="257" parent="22" name="perm_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <index id="258" parent="22" name="perm_id">
+        <columns>perm_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="259" parent="22" name="role_id">
+        <columns>role_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="260" parent="22" name="vp_role_perm_ibfk_1">
+        <columns>role_id</columns>
+        <ref-key>~.vp_roles.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="261" parent="22" name="vp_role_perm_ibfk_2">
+        <columns>perm_id</columns>
+        <ref-key>~.vp_permisos.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="262" parent="23" name="role_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="263" parent="23" name="role_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <key id="264" parent="23" name="PRIMARY">
+        <columns>role_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="265" parent="24" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="266" parent="24" name="user_vid">
+        <mandatory>1</mandatory>
+        <data-type>int(4) unsigned|0</data-type>
+      </column>
+      <column id="267" parent="24" name="user_pref">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)|0</data-type>
+      </column>
+      <column id="268" parent="24" name="user_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="269" parent="24" name="user_pass">
+        <mandatory>1</mandatory>
+        <data-type>char(128)|0</data-type>
+      </column>
+      <column id="270" parent="24" name="user_salt">
+        <mandatory>1</mandatory>
+        <data-type>char(128)|0</data-type>
+      </column>
+      <column id="271" parent="24" name="roll_id">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="272" parent="24" name="user_mail">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)|0</data-type>
+      </column>
+      <column id="273" parent="24" name="ext_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="274" parent="24" name="user_nm1">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="275" parent="24" name="user_nm2">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="276" parent="24" name="user_ap1">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="277" parent="24" name="user_ap2">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="278" parent="24" name="dep_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="279" parent="24" name="user_puesto">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="280" parent="24" name="user_nom">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="281" parent="24" name="user_mod">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="282" parent="24" name="user_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="283" parent="24" name="user_status">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1) unsigned|0</data-type>
+      </column>
+      <column id="284" parent="24" name="user_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="285" parent="24" name="PRIMARY">
+        <columns>user_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="286" parent="24" name="vp_user_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="287" parent="24" name="vp_user_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="288" parent="24" name="vp_user_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="289" parent="25" name="user_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="290" parent="25" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="291" parent="25" name="user_vid">
+        <mandatory>1</mandatory>
+        <data-type>int(4) unsigned|0</data-type>
+      </column>
+      <column id="292" parent="25" name="user_pref">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)|0</data-type>
+      </column>
+      <column id="293" parent="25" name="user_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="294" parent="25" name="user_pass">
+        <mandatory>1</mandatory>
+        <data-type>char(128)|0</data-type>
+      </column>
+      <column id="295" parent="25" name="user_salt">
+        <mandatory>1</mandatory>
+        <data-type>char(128)|0</data-type>
+      </column>
+      <column id="296" parent="25" name="roll_id">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="297" parent="25" name="user_mail">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)|0</data-type>
+      </column>
+      <column id="298" parent="25" name="ext_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="299" parent="25" name="user_nm1">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="300" parent="25" name="user_nm2">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="301" parent="25" name="user_ap1">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="302" parent="25" name="user_ap2">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)|0</data-type>
+      </column>
+      <column id="303" parent="25" name="dep_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="304" parent="25" name="user_puesto">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="305" parent="25" name="user_nom">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="306" parent="25" name="user_mod">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="307" parent="25" name="user_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="308" parent="25" name="user_status">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1) unsigned|0</data-type>
+      </column>
+      <column id="309" parent="25" name="user_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="310" parent="25" name="PRIMARY">
+        <columns>user_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="311" parent="26" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="312" parent="26" name="role_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <index id="313" parent="26" name="role_id">
+        <columns>role_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="314" parent="26" name="user_id">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="315" parent="26" name="vp_user_role_ibfk_1">
+        <columns>user_id</columns>
+        <ref-key>~.vp_user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="316" parent="26" name="vp_user_role_ibfk_2">
+        <columns>role_id</columns>
+        <ref-key>~.vp_roles.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="317" parent="27" name="kx_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="318" parent="27" name="kx_num">
+        <mandatory>1</mandatory>
+        <data-type>int(5) unsigned zerofill|0</data-type>
+      </column>
+      <column id="319" parent="27" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="320" parent="27" name="kx_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="321" parent="27" name="kx_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="322" parent="27" name="kx_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="323" parent="27" name="PRIMARY">
+        <columns>kx_id</columns>
+        <primary>1</primary>
+      </key>
+      <trigger id="324" parent="27" name="alm_kardex_ai">
+        <trig-events>I</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="325" parent="27" name="alm_kardex_au">
+        <trig-events>U</trig-events>
+        <trig-turn>AFTER_ROW</trig-turn>
+      </trigger>
+      <trigger id="326" parent="27" name="alm_kardex_bd">
+        <trig-events>D</trig-events>
+        <trig-turn>BEFORE_ROW</trig-turn>
+      </trigger>
+      <column id="327" parent="28" name="kx_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="328" parent="28" name="kx_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="329" parent="28" name="kx_num">
+        <mandatory>1</mandatory>
+        <data-type>int(5) unsigned zerofill|0</data-type>
+      </column>
+      <column id="330" parent="28" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="331" parent="28" name="kx_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="332" parent="28" name="kx_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="333" parent="28" name="kx_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="334" parent="28" name="PRIMARY">
+        <columns>kx_hist_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="335" parent="29" name="prov_hist_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="336" parent="29" name="prov_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="337" parent="29" name="prov_nm">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="338" parent="29" name="prov_nit">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)|0</data-type>
+      </column>
+      <column id="339" parent="29" name="prov_direccion">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="340" parent="29" name="prov_tel">
+        <mandatory>1</mandatory>
+        <data-type>int(8) unsigned|0</data-type>
+      </column>
+      <column id="341" parent="29" name="prov_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="342" parent="29" name="prov_desc">
+        <mandatory>1</mandatory>
+        <data-type>mediumtext|0</data-type>
+      </column>
+      <column id="343" parent="29" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="344" parent="29" name="prov_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="345" parent="29" name="prov_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="346" parent="29" name="prov_historial">
+        <mandatory>1</mandatory>
+        <data-type>datetime(6)|0</data-type>
+      </column>
+      <key id="347" parent="29" name="PRIMARY">
+        <columns>prov_hist_id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+  <data-source name="MySQL - financiero@localhost" uuid="7dec6b4a-c31c-4485-a573-4770661824dc">
+    <database-info product="MySQL" version="5.5.5-10.1.9-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="financiero">
+        <visible>1</visible>
+      </schema>
+      <table id="2" parent="1" name="alm_cat"/>
+      <table id="3" parent="1" name="alm_dep"/>
+      <table id="4" parent="1" name="alm_eqysu"/>
+      <table id="5" parent="1" name="alm_fac"/>
+      <table id="6" parent="1" name="alm_fac_ant"/>
+      <table id="7" parent="1" name="alm_marc"/>
+      <table id="8" parent="1" name="alm_ped"/>
+      <table id="9" parent="1" name="alm_per"/>
+      <table id="10" parent="1" name="alm_prod"/>
+      <table id="11" parent="1" name="alm_prod_ant"/>
+      <table id="12" parent="1" name="alm_prodped"/>
+      <table id="13" parent="1" name="alm_prov"/>
+      <table id="14" parent="1" name="alm_repot"/>
+      <table id="15" parent="1" name="alm_subcat"/>
+      <table id="16" parent="1" name="alm_user"/>
+      <table id="17" parent="1" name="alm_vitas"/>
+      <table id="18" parent="1" name="df_auto"/>
+      <table id="19" parent="1" name="df_credito"/>
+      <table id="20" parent="1" name="df_cuen"/>
+      <table id="21" parent="1" name="df_devito"/>
+      <table id="22" parent="1" name="df_movi"/>
+      <table id="23" parent="1" name="df_prov"/>
+      <table id="24" parent="1" name="df_tbanco"/>
+      <table id="25" parent="1" name="df_timpre"/>
+      <table id="26" parent="1" name="df_user"/>
+      <table id="27" parent="1" name="df_vitas"/>
+      <table id="28" parent="1" name="df_voucher"/>
+      <table id="29" parent="1" name="it_datg"/>
+      <column id="30" parent="2" name="cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="31" parent="2" name="cate_reng">
+        <mandatory>1</mandatory>
+        <data-type>varchar(40)|0</data-type>
+      </column>
+      <column id="32" parent="2" name="cat_cod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(150)|0</data-type>
+      </column>
+      <column id="33" parent="2" name="cat_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="34" parent="2" name="cat_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="35" parent="2" name="cat_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="36" parent="2" name="PRIMARY">
+        <columns>cat_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="37" parent="3" name="dep_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="38" parent="3" name="dep_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="39" parent="3" name="dep_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="40" parent="3" name="dep_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="41" parent="3" name="PRIMARY">
+        <columns>dep_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="42" parent="4" name="eqysu_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="43" parent="4" name="eqysu_tip">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="44" parent="4" name="eqysu_mar">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="45" parent="4" name="eqysu_mod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="46" parent="4" name="eqysu_des">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="47" parent="4" name="eqysu_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="48" parent="4" name="eqysu_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="49" parent="4" name="PRIMARY">
+        <columns>eqysu_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="50" parent="5" name="fac_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="51" parent="5" name="fac_num">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="52" parent="5" name="fac_fec">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="53" parent="5" name="fac_prov">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="54" parent="5" name="fac_des">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="55" parent="5" name="fac_tot">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="56" parent="5" name="fac_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="57" parent="5" name="fac_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <key id="58" parent="5" name="PRIMARY">
+        <columns>fac_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="59" parent="6" name="fac_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="60" parent="6" name="fac_num">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="61" parent="6" name="fac_fec">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="62" parent="6" name="fac_prov">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="63" parent="6" name="fac_des">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="64" parent="6" name="fac_tot">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="65" parent="6" name="fac_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="66" parent="6" name="fac_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <key id="67" parent="6" name="PRIMARY">
+        <columns>fac_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="68" parent="7" name="marc_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="69" parent="7" name="marc_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="70" parent="7" name="marc_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="71" parent="7" name="marc_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="72" parent="7" name="PRIMARY">
+        <columns>marc_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="73" parent="8" name="ped_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="74" parent="8" name="ped_num">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="75" parent="8" name="ped_fec">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="76" parent="8" name="ped_prov">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="77" parent="8" name="ped_des">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="78" parent="8" name="ped_tot">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="79" parent="8" name="ped_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="80" parent="8" name="ped_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <key id="81" parent="8" name="PRIMARY">
+        <columns>ped_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="82" parent="9" name="per_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="83" parent="9" name="per_nom">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="84" parent="9" name="per_ap">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="85" parent="9" name="per_dep">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="86" parent="9" name="per_pue">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="87" parent="9" name="per_tel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="88" parent="9" name="per_ext">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="89" parent="9" name="per_com">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="90" parent="9" name="per_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="91" parent="9" name="per_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="92" parent="9" name="PRIMARY">
+        <columns>per_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="93" parent="10" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="94" parent="10" name="prod_t">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="95" parent="10" name="prod_fac">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="96" parent="10" name="prod_feentre">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="97" parent="10" name="prod_fecha">
+        <data-type>date|0</data-type>
+      </column>
+      <column id="98" parent="10" name="prod_eqysu">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="99" parent="10" name="prod_costu">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="100" parent="10" name="prod_cant">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="101" parent="10" name="prod_req">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="102" parent="10" name="prod_folio">
+        <mandatory>1</mandatory>
+        <data-type>varchar(90)|0</data-type>
+      </column>
+      <column id="103" parent="10" name="prod_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="104" parent="10" name="prod_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="105" parent="10" name="PRIMARY">
+        <columns>prod_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="106" parent="11" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="107" parent="11" name="prod_t">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="108" parent="11" name="prod_fac">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="109" parent="11" name="prod_feentre">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="110" parent="11" name="prod_fecha">
+        <data-type>date|0</data-type>
+      </column>
+      <column id="111" parent="11" name="prod_eqysu">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="112" parent="11" name="prod_costu">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="113" parent="11" name="prod_cant">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="114" parent="11" name="prod_req">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="115" parent="11" name="prod_folio">
+        <mandatory>1</mandatory>
+        <data-type>varchar(90)|0</data-type>
+      </column>
+      <column id="116" parent="11" name="prod_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="117" parent="11" name="prod_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="118" parent="11" name="PRIMARY">
+        <columns>prod_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="119" parent="12" name="prodped_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="120" parent="12" name="prodped_t">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="121" parent="12" name="prodped_ped">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="122" parent="12" name="prodped_feentre">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="123" parent="12" name="prodped_fecha">
+        <data-type>date|0</data-type>
+      </column>
+      <column id="124" parent="12" name="prodped_eqysu">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="125" parent="12" name="prodped_costu">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="126" parent="12" name="prodped_cant">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="127" parent="12" name="prodped_req">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="128" parent="12" name="prodped_folio">
+        <mandatory>1</mandatory>
+        <data-type>varchar(90)|0</data-type>
+      </column>
+      <column id="129" parent="12" name="prodped_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="130" parent="12" name="prodped_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="131" parent="12" name="PRIMARY">
+        <columns>prodped_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="132" parent="13" name="prov_id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="133" parent="13" name="prov_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="134" parent="13" name="prov_dir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="135" parent="13" name="prov_nit">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="136" parent="13" name="prov_tel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="137" parent="13" name="prov_des">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="138" parent="13" name="prov_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="139" parent="13" name="prov_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <key id="140" parent="13" name="PRIMARY">
+        <columns>prov_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="141" parent="14" name="id_rep">
+        <mandatory>1</mandatory>
+        <data-type>int(200)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="142" parent="14" name="id_prod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="143" parent="14" name="fe_prod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)|0</data-type>
+      </column>
+      <column id="144" parent="14" name="sal_pro">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)|0</data-type>
+      </column>
+      <key id="145" parent="14" name="PRIMARY">
+        <columns>id_rep</columns>
+        <primary>1</primary>
+      </key>
+      <column id="146" parent="15" name="subcat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="147" parent="15" name="subcat_renglon">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="148" parent="15" name="subcat_cod">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="149" parent="15" name="subcat_nom">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="150" parent="15" name="subcat_des">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="151" parent="15" name="subcat_uni">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="152" parent="15" name="subcat_pre">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="153" parent="15" name="subcat_act">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="154" parent="15" name="subcat_tip">
+        <mandatory>1</mandatory>
+        <data-type>varchar(6)|0</data-type>
+      </column>
+      <column id="155" parent="15" name="subcat_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="156" parent="15" name="subcat_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="157" parent="15" name="PRIMARY">
+        <columns>subcat_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="158" parent="16" name="co_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="159" parent="16" name="co_nombre">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="160" parent="16" name="co_apaterno">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="161" parent="16" name="co_login">
+        <mandatory>1</mandatory>
+        <data-type>varchar(40)|0</data-type>
+      </column>
+      <column id="162" parent="16" name="co_password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(80)|0</data-type>
+      </column>
+      <column id="163" parent="16" name="co_email">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="164" parent="16" name="co_roll">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="165" parent="16" name="co_dep">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="166" parent="16" name="v_quien">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="167" parent="16" name="v_hora">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <index id="168" parent="16" name="id">
+        <columns>co_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="169" parent="16" name="id">
+        <columns>co_id</columns>
+        <underlying-index>id</underlying-index>
+      </key>
+      <column id="170" parent="17" name="vitas_id">
+        <mandatory>1</mandatory>
+        <data-type>int(250)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="171" parent="17" name="vitas_idnota">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="172" parent="17" name="vitas_nnota">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="173" parent="17" name="vitas_user">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="174" parent="17" name="vitas_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <key id="175" parent="17" name="PRIMARY">
+        <columns>vitas_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="176" parent="18" name="aut_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="177" parent="18" name="aut_nombre">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="178" parent="18" name="aut_apaterno">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="179" parent="18" name="aut_email">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="180" parent="18" name="aut_roll">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="181" parent="18" name="aut_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="182" parent="18" name="aut_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <index id="183" parent="18" name="id">
+        <columns>aut_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="184" parent="18" name="id">
+        <columns>aut_id</columns>
+        <underlying-index>id</underlying-index>
+      </key>
+      <column id="185" parent="19" name="cre_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="186" parent="19" name="cre_c">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="187" parent="19" name="cre_dia">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="188" parent="19" name="cre_mes">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="189" parent="19" name="cre_ano">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="190" parent="19" name="cre_desc">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="191" parent="19" name="cre_mon">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="192" parent="19" name="cre_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="193" parent="19" name="cre_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="194" parent="19" name="PRIMARY">
+        <columns>cre_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="195" parent="20" name="cue_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="196" parent="20" name="cue_ti">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="197" parent="20" name="cue_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="198" parent="20" name="cue_moi">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="199" parent="20" name="cue_banc">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="200" parent="20" name="cue_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="201" parent="20" name="cue_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="202" parent="20" name="PRIMARY">
+        <columns>cue_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="203" parent="21" name="dev_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="204" parent="21" name="dev_c">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="205" parent="21" name="dev_dia">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="206" parent="21" name="dev_mes">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="207" parent="21" name="dev_ano">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="208" parent="21" name="dev_desc">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="209" parent="21" name="dev_mon">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="210" parent="21" name="pro_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="211" parent="21" name="pro_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="212" parent="21" name="PRIMARY">
+        <columns>dev_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="213" parent="22" name="cre_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="214" parent="22" name="cre_c">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="215" parent="22" name="cre_dia">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="216" parent="22" name="cre_mes">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="217" parent="22" name="cre_ano">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="218" parent="22" name="cre_desc">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="219" parent="22" name="cre_mon">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="220" parent="22" name="cre_mov">
+        <mandatory>1</mandatory>
+        <data-type>varchar(150)|0</data-type>
+      </column>
+      <column id="221" parent="22" name="cre_esta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="222" parent="22" name="cre_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="223" parent="22" name="cre_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="224" parent="22" name="PRIMARY">
+        <columns>cre_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="225" parent="23" name="pro_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="226" parent="23" name="pro_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="227" parent="23" name="pro_nit">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="228" parent="23" name="pro_dir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="229" parent="23" name="pro_tel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="230" parent="23" name="pro_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="231" parent="23" name="pro_desc">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="232" parent="23" name="pro_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="233" parent="23" name="prov_status">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="234" parent="23" name="prov_rev">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned|0</data-type>
+      </column>
+      <column id="235" parent="23" name="pro_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="236" parent="23" name="prov_fechahora">
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <key id="237" parent="23" name="PRIMARY">
+        <columns>pro_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="238" parent="24" name="b_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="239" parent="24" name="b_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="240" parent="24" name="b_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="241" parent="24" name="b_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="242" parent="24" name="PRIMARY">
+        <columns>b_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="243" parent="25" name="timp_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="244" parent="25" name="timp_n">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="245" parent="25" name="timp_v">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="246" parent="25" name="timp_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="247" parent="25" name="timp_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <index id="248" parent="25" name="id">
+        <columns>timp_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="249" parent="25" name="id">
+        <columns>timp_id</columns>
+        <underlying-index>id</underlying-index>
+      </key>
+      <column id="250" parent="26" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="251" parent="26" name="nombre">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="252" parent="26" name="apaterno">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="253" parent="26" name="login">
+        <mandatory>1</mandatory>
+        <data-type>varchar(40)|0</data-type>
+      </column>
+      <column id="254" parent="26" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(80)|0</data-type>
+      </column>
+      <column id="255" parent="26" name="email">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="256" parent="26" name="roll">
+        <data-type>text|0</data-type>
+      </column>
+      <column id="257" parent="26" name="v_quien">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="258" parent="26" name="v_hora">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <index id="259" parent="26" name="id">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="260" parent="26" name="id">
+        <columns>id</columns>
+        <underlying-index>id</underlying-index>
+      </key>
+      <column id="261" parent="27" name="vitas_id">
+        <mandatory>1</mandatory>
+        <data-type>int(250)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="262" parent="27" name="vitas_idnota">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)|0</data-type>
+      </column>
+      <column id="263" parent="27" name="vitas_nnota">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="264" parent="27" name="vitas_user">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="265" parent="27" name="vitas_fech">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <key id="266" parent="27" name="PRIMARY">
+        <columns>vitas_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="267" parent="28" name="vou_id">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="268" parent="28" name="vou_dia">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="269" parent="28" name="vou_mes">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="270" parent="28" name="vou_ano">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)|0</data-type>
+      </column>
+      <column id="271" parent="28" name="vou_cue">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="272" parent="28" name="vou_noche">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="273" parent="28" name="vou_mont">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="274" parent="28" name="vou_tolet">
+        <mandatory>1</mandatory>
+        <data-type>mediumtext|0</data-type>
+      </column>
+      <column id="275" parent="28" name="vou_desc">
+        <mandatory>1</mandatory>
+        <data-type>longtext|0</data-type>
+      </column>
+      <column id="276" parent="28" name="vou_para">
+        <mandatory>1</mandatory>
+        <data-type>varchar(150)|0</data-type>
+      </column>
+      <column id="277" parent="28" name="vou_user">
+        <mandatory>1</mandatory>
+        <data-type>varchar(150)|0</data-type>
+      </column>
+      <column id="278" parent="28" name="vou_auto">
+        <mandatory>1</mandatory>
+        <data-type>varchar(150)|0</data-type>
+      </column>
+      <column id="279" parent="28" name="vou_esta">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)|0</data-type>
+      </column>
+      <column id="280" parent="28" name="vou_ing">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <column id="281" parent="28" name="vou_fecha">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)|0</data-type>
+      </column>
+      <key id="282" parent="28" name="PRIMARY">
+        <columns>vou_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="283" parent="29" name="it_idit">
+        <mandatory>1</mandatory>
+        <data-type>int(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="284" parent="29" name="it_user">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="285" parent="29" name="it_mail">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="286" parent="29" name="it_ext">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="287" parent="29" name="it_dep">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="288" parent="29" name="it_nom1">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="289" parent="29" name="it_nom2">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="290" parent="29" name="it_nom3">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="291" parent="29" name="it_nom4">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="292" parent="29" name="it_carg">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="293" parent="29" name="it_pass">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="294" parent="29" name="it_pass2">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <index id="295" parent="29" name="id">
+        <columns>it_idit</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="296" parent="29" name="id">
+        <columns>it_idit</columns>
+        <underlying-index>id</underlying-index>
+      </key>
+    </database-model>
+  </data-source>
+</component>
