@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User: stuart.carazo
  * Date: 2/11/2016
@@ -6,7 +7,8 @@
  */
 
 //funciones de personal
-function cupones_usuarios(){
+function cupones_usuarios()
+{
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "SELECT T1.user_id,user_vid,user_mail,ext_id,user_pref,user_nm1,user_nm2,user_ap1,user_ap2,T1.dep_id,dep_nm,user_puesto,user_nom,user_status,T1.role_id,role_nm
@@ -23,7 +25,8 @@ function cupones_usuarios(){
     return $personas;
 }
 // funcion listado bitacora por usuario
-function list_bitacora_por_usuario($user_id){
+function list_bitacora_por_usuario($user_id)
+{
     $pdo = Database::connect();
     $sql = "SELECT vp_bitacora_vehiculo.km_recorrido,vp_bitacora_vehiculo.precio_comb,vp_bitacora_vehiculo.porcentaje_comb,vp_bitacora_vehiculo.id_bitacora, vp_bitacora_vehiculo.fecha,vp_bitacora_vehiculo.km_inicial,vp_bitacora_vehiculo.km_final ,vp_bitacora_vehiculo.status,vp_vehiculo.nombre,vp_vehiculo.placa,vp_vehiculo.linea,vp_vehiculo.modelo,vp_vehiculo.color,vp_bitacora_vehiculo.id_solicitud, vp_bitacora_vehiculo.Destino, vp_user.user_nm1, vp_user.user_ap1
 FROM vp_bitacora_vehiculo
@@ -37,16 +40,14 @@ where vp_bitacora_vehiculo.id_user = ? ORDER BY vp_bitacora_vehiculo.id_bitacora
     $nombramientos = $p->fetchAll();
     Database::disconnect();
     return $nombramientos;
-    
-    
-    
 }
 
 
-function list_bitacora_por_usuario2($user_id){
+function list_bitacora_por_usuario2($user_id)
+{
     $pdo = Database::connect();
-	$status1=1;
-	
+    $status1 = 1;
+
     $sql = "SELECT vp_bitacora_vehiculo.km_recorrido,vp_bitacora_vehiculo.precio_comb,vp_bitacora_vehiculo.porcentaje_comb,vp_bitacora_vehiculo.id_bitacora, vp_bitacora_vehiculo.fecha,vp_bitacora_vehiculo.km_inicial,vp_bitacora_vehiculo.km_final ,vp_bitacora_vehiculo.status,vp_vehiculo.nombre,vp_vehiculo.placa,vp_vehiculo.linea,vp_vehiculo.modelo,vp_vehiculo.color,vp_bitacora_vehiculo.id_solicitud, vp_bitacora_vehiculo.Destino, vp_user.user_nm1, vp_user.user_ap1
 FROM vp_bitacora_vehiculo
 INNER JOIN vp_user
@@ -59,14 +60,12 @@ where vp_bitacora_vehiculo.status = ? ORDER BY vp_bitacora_vehiculo.id_bitacora 
     $nombramientos = $p->fetchAll();
     Database::disconnect();
     return $nombramientos;
-    
-    
-    
 }
 
 
 // funcion listado bitacora por usuario
-function list_bitacora_por_usuario_admin($user_id){
+function list_bitacora_por_usuario_admin($user_id)
+{
     $pdo = Database::connect();
     $sql = "SELECT vp_bitacora_vehiculo.precio_comb,vp_bitacora_vehiculo.porcentaje_comb,vp_bitacora_vehiculo.id_bitacora, vp_bitacora_vehiculo.fecha,vp_bitacora_vehiculo.km_inicial,vp_bitacora_vehiculo.km_final,vp_bitacora_vehiculo.km_recorrido ,vp_bitacora_vehiculo.status,vp_vehiculo.nombre,vp_vehiculo.placa,vp_vehiculo.linea,vp_vehiculo.modelo,vp_vehiculo.color,vp_bitacora_vehiculo.id_solicitud, vp_bitacora_vehiculo.Destino, vp_bitacora_vehiculo.motivo, vp_user.user_nm1, vp_user.user_ap1
 FROM vp_bitacora_vehiculo
@@ -74,15 +73,12 @@ INNER JOIN vp_user
 ON vp_bitacora_vehiculo.id_user = vp_user.user_id
 INNER JOIN vp_vehiculo
 ON vp_bitacora_vehiculo.vehiculo_id=vp_vehiculo.vehiculo_id
-ORDER BY vp_bitacora_vehiculo.id_bitacora  DESC";
+ORDER BY vp_bitacora_vehiculo.id_bitacora  DESC LIMIT 10000";
     $p = $pdo->prepare($sql);
     $p->execute(array($user_id));
     $nombramientos = $p->fetchAll();
     Database::disconnect();
     return $nombramientos;
-    
-    
-    
 }
 
 // funcion iformacion bitacora por id
@@ -101,7 +97,8 @@ function bitacora_info($id){
 */
 
 // funcion iformacion bitacora por id
-function bitacora_info($id){
+function bitacora_info($id)
+{
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "SELECT id_bitacora, Destino,motivo,km_inicial, km_final, status, vehiculo_id FROM vp_bitacora_vehiculo where id_bitacora = ? ORDER BY id_bitacora";
@@ -113,17 +110,18 @@ function bitacora_info($id){
 }
 
 // funcion iformacion bitacora por id
-function bitacora_info_precio_reg($id_vehi){
-    $var1=$id_vehi;
-	
-	$pdo = Database::connect();
-	
+function bitacora_info_precio_reg($id_vehi)
+{
+    $var1 = $id_vehi;
+
+    $pdo = Database::connect();
+
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql5 = "SELECT precio_comb FROM vp_bitacora_vehiculo where vehiculo_id=$var1 AND status=2 ORDER BY Fecha DESC, id_bitacora DESC LIMIT 1";
-	
-	// $sql5 = "SELECT  precio_comb FROM `vp_bitacora_vehiculo` WHERE id_bitacora = (SELECT MAX(id_bitacora) FROM `vp_bitacora_vehiculo` WHERE vehiculo_id=$var1)";
-	
-	// 
+
+    // $sql5 = "SELECT  precio_comb FROM `vp_bitacora_vehiculo` WHERE id_bitacora = (SELECT MAX(id_bitacora) FROM `vp_bitacora_vehiculo` WHERE vehiculo_id=$var1)";
+
+    // 
     $q5 = $pdo->prepare($sql5);
     $q5->execute(array($id_vehi));
     $ultimo_precio = $q5->fetch(PDO::FETCH_ASSOC);
@@ -136,48 +134,49 @@ function bitacora_info_precio_reg($id_vehi){
 
 
 
-function monthToString($date){
-    $mes= date('m',strtotime($date));
-    switch ($mes){
+function monthToString($date)
+{
+    $mes = date('m', strtotime($date));
+    switch ($mes) {
         case 1:
             $month = 'Enero';
-        break;
+            break;
         case 2:
             $month = 'Febrero';
-        break;
+            break;
         case 3:
             $month = 'Marzo';
-        break;
+            break;
         case 4:
             $month = 'Abril';
-        break;
+            break;
         case 5:
             $month = 'Mayo';
-        break;
+            break;
         case 6:
             $month = 'Junio';
-        break;
+            break;
         case 7:
             $month = 'Julio';
-        break;
+            break;
         case 8:
             $month = 'Agosto';
-        break;
+            break;
         case 9:
             $month = 'Septiembre';
             break;
         case 10:
             $month = 'Octubre';
-        break;
+            break;
         case 11:
             $month = 'Noviembre';
-        break;
+            break;
         case 12:
             $month = 'Diciembre';
-        break;
+            break;
         default:
             $month = '';
-        break;
+            break;
     }
     return $month;
 }
