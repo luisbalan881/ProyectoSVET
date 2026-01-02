@@ -73,7 +73,7 @@ INNER JOIN vp_user
 ON vp_bitacora_vehiculo.id_user = vp_user.user_id
 INNER JOIN vp_vehiculo
 ON vp_bitacora_vehiculo.vehiculo_id=vp_vehiculo.vehiculo_id
-ORDER BY vp_bitacora_vehiculo.id_bitacora  DESC LIMIT 10000";
+ORDER BY vp_bitacora_vehiculo.id_bitacora  DESC LIMIT 5500";
     $p = $pdo->prepare($sql);
     $p->execute(array($user_id));
     $nombramientos = $p->fetchAll();
