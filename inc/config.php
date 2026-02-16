@@ -1,4 +1,3 @@
-66
 <?php
 /**
  * config.php

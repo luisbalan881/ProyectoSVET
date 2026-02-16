@@ -24,7 +24,7 @@ function get_solicitud_by_id_solicitante($solicitud){
 
 $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "SELECT id_nombramiento, CONCAT(vp_user.user_nm1,' ', vp_user.user_nm2,' ', vp_user.user_ap1,' ', vp_user.user_ap2) as nombre,vp_user.sueldo_total,vp_user.partida_presupuestaria,vs_nombramiento.cod_nombramiento,vs_nombramiento.objetivo,vs_nombramiento.justificacion_ampliacion,vs_nombramiento.lugar, vs_nombramiento.fecha , vs_nombramiento.fecha_inicio, vs_nombramiento.fecha_fin , vs_nombramiento.actividades, vs_nombramiento.logros, vs_nombramiento.fecha_liquidacion, vs_nombramiento.objetivod, vs_nombramiento.hora_inicio,vs_nombramiento.hora_fin, vp_deptos.dep_nm , vp_user.user_puesto, vp_user.user_nit, vp_user.user_cui
+$sql = "SELECT id_nombramiento, CONCAT(vp_user.user_nm1,' ', vp_user.user_nm2,' ', vp_user.user_ap1,' ', vp_user.user_ap2) as nombre,vp_user.sueldo_total,vp_user.partida_presupuestaria_nueva,vs_nombramiento.cod_nombramiento,vs_nombramiento.objetivo,vs_nombramiento.justificacion_ampliacion,vs_nombramiento.lugar, vs_nombramiento.fecha , vs_nombramiento.fecha_inicio, vs_nombramiento.fecha_fin , vs_nombramiento.actividades, vs_nombramiento.logros, vs_nombramiento.fecha_liquidacion, vs_nombramiento.objetivod, vs_nombramiento.hora_inicio,vs_nombramiento.hora_fin, vp_deptos.dep_nm , vp_user.user_puesto, vp_user.user_nit, vp_user.user_cui
 FROM vs_nombramiento 
 join vp_user 
 on vs_nombramiento.id_funcionario = vp_user.user_id 

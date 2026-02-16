@@ -66,7 +66,7 @@
                   <div class="form-material">
                     <div class="input-group has-personalizado">
                         <span class="input-group-addon" ><span>Destino</span></span>
-                      <input class="form-control input-sm"  type="text"  id="destino" name="destino"  placeholder="Destino" >
+                      <input class="form-control input-sm"  type="text"  id="destino" name="destino" value= "<?php echo $carro['destino']; ?>" disabled>
                     </div>
                   </div>
                 </div>
