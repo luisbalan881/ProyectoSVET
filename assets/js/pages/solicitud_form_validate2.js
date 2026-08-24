@@ -121,6 +121,7 @@ function add_formulario(userid, dep, correlativo) {
                                                     $('#loading1').fadeOut("slow");
                                                     $('#modal-remoto-lgg').modal('hide');
                                                       show_notificacion_success("Formulario Asignado");
+                                                      window.location.reload();
                                                   //get_horarios_usuario();
                                            }, 300);
                                            
@@ -164,4 +165,3 @@ function add_formulario(userid, dep, correlativo) {
 
 
 //SOLICITURD add_solicitud_manual
-

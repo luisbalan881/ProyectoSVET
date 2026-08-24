@@ -1,5 +1,13 @@
 <?php
 require_once '../../inc/Database.php';
+
+function vp_user_has_user_cargo_column(PDO $pdo){
+  $sql = "SHOW COLUMNS FROM vp_user LIKE 'user_cargo'";
+  $q = $pdo->prepare($sql);
+  $q->execute();
+  return (bool) $q->fetch(PDO::FETCH_ASSOC);
+}
+
 $user_nm1 = $_POST['user_nm1'];
 $user_nm2 = $_POST['user_nm2'];
 $user_ap1 = $_POST['user_ap1'];
@@ -18,6 +26,7 @@ $user_direccion = $_POST['user_direccion'];
 $dep_id = $_POST['dep_id'];
 $user_puesto = $_POST['user_puesto'];
 $user_cargo = $_POST['user_cargo'];
+$user_cargo_firma = isset($_POST['user_cargo_firma']) ? trim($_POST['user_cargo_firma']) : '';
 $nacionalidad = $_POST['nacionalidad'];
 
 $user_mod = $_POST['user_id'];
@@ -57,14 +66,28 @@ $c_f = date('Y-m-d', strtotime($contrato_fin));
 
 $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "INSERT INTO vp_user (user_nm1,user_nm2,user_ap1,user_ap2,fecha_nac,
-  user_lugar_nac,user_genero,user_estado_civil,user_cui,user_movil,user_profesion,user_direccion,
-  dep_id,user_puesto,user_nom,user_nacionalidad,user_nit,user_igss,user_mod,user_rev,user_status,user_horario_id)
-  values(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)";
+$hasUserCargoColumn = vp_user_has_user_cargo_column($pdo);
+
+if ($hasUserCargoColumn) {
+  $sql = "INSERT INTO vp_user (user_nm1,user_nm2,user_ap1,user_ap2,fecha_nac,
+    user_lugar_nac,user_genero,user_estado_civil,user_cui,user_movil,user_profesion,user_direccion,
+    dep_id,user_puesto,user_nom,user_cargo,user_nacionalidad,user_nit,user_igss,user_mod,user_rev,user_status,user_horario_id)
+    values(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)";
+  $params = array($user_nm1,$user_nm2,
+  $user_ap1,$user_ap2,$fecha_nac,$user_lugar_nac,$user_genre,$user_civil,$user_cui,$user_movil,$user_profesion,
+  $user_direccion,$dep_id,$user_puesto,$user_cargo,$user_cargo_firma,$nacionalidad,$user_nit,$user_igss,$user_mod,$user_rev,$user_status,4);
+} else {
+  $sql = "INSERT INTO vp_user (user_nm1,user_nm2,user_ap1,user_ap2,fecha_nac,
+    user_lugar_nac,user_genero,user_estado_civil,user_cui,user_movil,user_profesion,user_direccion,
+    dep_id,user_puesto,user_nom,user_nacionalidad,user_nit,user_igss,user_mod,user_rev,user_status,user_horario_id)
+    values(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)";
+  $params = array($user_nm1,$user_nm2,
+  $user_ap1,$user_ap2,$fecha_nac,$user_lugar_nac,$user_genre,$user_civil,$user_cui,$user_movil,$user_profesion,
+  $user_direccion,$dep_id,$user_puesto,$user_cargo,$nacionalidad,$user_nit,$user_igss,$user_mod,$user_rev,$user_status,4);
+}
+
 $q = $pdo->prepare($sql);
-$q->execute(array($user_nm1,$user_nm2,
-$user_ap1,$user_ap2,$fecha_nac,$user_lugar_nac,$user_genre,$user_civil,$user_cui,$user_movil,$user_profesion,
-$user_direccion,$dep_id,$user_puesto,$user_cargo,$nacionalidad,$user_nit,$user_igss,$user_mod,$user_rev,$user_status,4));
+$q->execute($params);
 $Id = $pdo->lastInsertId();
 
 $sql2 = "INSERT INTO vp_user_datos_laborales (user_id,acuerdo_vice,fecha_acuerdo,grupo_id,subgrupo_id,

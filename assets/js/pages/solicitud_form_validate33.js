@@ -52,6 +52,7 @@ function add_formulario22(userid, dep, correlativo) {
          var objetivo=$('#objetivo').val();
         var logros=$('#logros').val();
         var actividades=$('#actividades').val();
+        var jefeACargo = $('#jefe_a_cargo').length ? $('#jefe_a_cargo').val() : '';
         
         
         var total1=$('#dest').val();  
@@ -80,7 +81,7 @@ function add_formulario22(userid, dep, correlativo) {
 
             type: "POST",
             url: "viaticos/php/add_solicitud33.php",
-            data: {codigo:c, total:total1, total2:total2, total3:total3, total4:total4, objetivo:objetivo,logros:logros,actividades:actividades}, //f de fecha y u de estado.
+            data: {codigo:c, total:total1, total2:total2, total3:total3, total4:total4, objetivo:objetivo,logros:logros,actividades:actividades,jefe_a_cargo:jefeACargo}, //f de fecha y u de estado.
 
             beforeSend:function(){
                           //$('#response').html('<span class="text-info">Loading response...</span>');
@@ -89,6 +90,17 @@ function add_formulario22(userid, dep, correlativo) {
                   },
                   success:function(data){
                     //alert(data);
+                    if (typeof data === 'string' && data.indexOf('ERROR:') === 0) {
+                      var mensajeError = data.substring(6);
+                      $('#loading1').fadeOut("slow");
+                      $('#loading').fadeOut("slow");
+                      if (typeof swal === 'function') {
+                        swal("Plazo vencido", mensajeError, "warning");
+                      } else {
+                        alert(mensajeError);
+                      }
+                      return;
+                    }
                     
                      setTimeout(function(){
                                                     $('#loading1').fadeOut("slow");
@@ -186,4 +198,3 @@ function add_formulario22(userid, dep, correlativo) {
 
 
 //SOLICITURD add_solicitud_manual
-

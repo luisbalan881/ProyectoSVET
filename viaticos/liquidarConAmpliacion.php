@@ -1,5 +1,6 @@
 <?php
     include_once '../inc/functions.php';
+    include_once 'funciones_viaticos.php';
 
 
     sec_session_start();
@@ -19,6 +20,12 @@
         if ( null==$id2 ) {
             header("Location: index.php?ref=_2");
         }
+
+            $plazoLiquidacion = viaticos_liquidacion_plazo_por_nombramiento($id2);
+            if (!$plazoLiquidacion['allowed']) {
+                viaticos_render_liquidacion_bloqueada($plazoLiquidacion);
+                exit;
+            }
 
             
             

@@ -221,9 +221,9 @@ sec_session_start();
                                        }                                       
                                        
                                           echo '<button title="Imprimir solicitud de compra" class="btn btn-personalizado outline" title="Descargar" ';
-                                      if($s['estado_solicitud']>=1 and ($user_id == 1058 or $user_id==9997) )
+                                      if($s['estado_solicitud']>=1 and ($user_id == 1058 or $user_id==10067) )
                                                                            // if(($s['estado_solicitud']==1 OR $s['estado_solicitud']==3) and ($user_id == 1058 or $user_id==9997) )
-                                      //if ($nombramiento['status'] >= 2 and ($user_id == 9966 or $user_id==177) )
+                                      //if ($nombramiento['status'] >= 2 and ($user_id == 9966 or $user_id==177) )//
                                       {
                                       echo 'onclick="pdfDetalleCompra('.$s['id_solicitud_compra'].')"';
                                    //     echo '<span data-toggle="tooltip" title="Dar Seguimiento"><a class="btn btn-default"  title="Dar Seguimiento"  data-toggle="modal" data-target="#modal-remoto-lgg" href="compras/solicitar_aprobacion.php?id='.$s['id_solicitud_compra'].'"><i class="fa fa-pencil-square-o text-warnig"></i></a></span>';

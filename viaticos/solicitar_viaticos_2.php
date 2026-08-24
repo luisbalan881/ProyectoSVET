@@ -1,5 +1,6 @@
 <?php
     include_once '../inc/functions.php';
+    include_once 'funciones_viaticos.php';
 
 
     sec_session_start();
@@ -26,6 +27,23 @@
             $tipo = tipo_viaticos();
             $tipo2 = tipo_viaticos2();
 			$tsolicitado=get_solicitud_by_id_t($id2);
+            $firmantes = personas();
+            $firmanteActualId = null;
+            $pdoFirmante = Database::connect();
+            $pdoFirmante->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sqlFirmante = "SELECT id_funcionario2 FROM vs_nombramiento WHERE id_nombramiento = ?";
+            $qFirmante = $pdoFirmante->prepare($sqlFirmante);
+            $qFirmante->execute(array($id2));
+            $firmanteActual = $qFirmante->fetch(PDO::FETCH_ASSOC);
+            Database::disconnect();
+            if (!empty($firmanteActual['id_funcionario2'])) {
+                $firmanteActualId = (int) $firmanteActual['id_funcionario2'];
+            }
+            $plazoLiquidacion = viaticos_liquidacion_plazo_por_nombramiento($id2);
+            if (!$plazoLiquidacion['allowed']) {
+                viaticos_render_liquidacion_bloqueada($plazoLiquidacion);
+                return;
+            }
             $persona = User::getByUserId($id);
 
 
@@ -517,7 +535,7 @@
                       <div class="input-group has-personalizado">
 
     
-<input class="form-control input-sm" type="number" id="totalgt"  readonly> 
+<input class="form-control input-sm" type="number" id="totalgt" value="0" readonly> 
 
                     </div>
                                             
@@ -547,6 +565,34 @@
             <div class="block-content ">
               <form id="SolicitudForm" class="js-validation-solicitud form-horizontal form-style-10" method="POST" enctype="multipart/form-data">
                
+                              
+                    <div class="form-group">
+                    <div class="col-xs-12">
+
+                          <div class="form-material">
+                            <label for="jefe_a_cargo">Jefe a cargo (Opcional)</label>
+                            <div class="input-group has-personalizado">
+                              <span class="input-group-addon" ><span class="fa fa-user"></span></span>
+                              <select name="jefe_a_cargo" id="jefe_a_cargo" data-placeholder="Seleccionar firmante" class="chosen-select-width col-xs-12 form-control" tabindex="6">
+                                <option value=""></option>
+                                <?php
+                                foreach ($firmantes as $firmante):
+                                    $firmanteId = (int) $firmante['user_id'];
+                                    if ((int) $firmante['user_status'] !== 1 && $firmanteId !== $firmanteActualId) {
+                                        continue;
+                                    }
+                                    $nombreFirmante = trim($firmante['user_nm1'] . ' ' . $firmante['user_nm2'] . ' ' . $firmante['user_ap1'] . ' ' . $firmante['user_ap2']);
+                                    echo '<option value="' . $firmanteId . '"' . ($firmanteId === $firmanteActualId ? ' selected' : '') . '>' . $nombreFirmante . ' (' . $firmante['dep_nm'] . ')</option>';
+                                endforeach
+                                ?>
+                              </select>
+                            </div>
+
+
+                          </div>
+
+                    </div>
+                  </div>
                               
                     <div class="form-group">
                     <div class="col-xs-12">

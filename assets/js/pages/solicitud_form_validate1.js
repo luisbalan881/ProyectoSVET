@@ -36,6 +36,7 @@ function add_solicitud1(userid, dep) {
         var fecha=$('#soli_fecha').val();
         var fecha2=$('#soli_fecha2').val();
         var objetivo1=$('#objetivo').val();
+        var jefeACargo = $('#jefe_a_cargo').length ? $('#jefe_a_cargo').val() : '';
         //var duracion1=$('#soli_tiempo2').val();
         var dur_en=$("#horas_dias option:selected");
         var lugar=$("#soli_lugar").val(); // luares
@@ -58,7 +59,7 @@ function add_solicitud1(userid, dep) {
 
             type: "POST",
             url: "viaticos/php/add_solicitud1.php",
-            data: {fecha:fecha,fecha2:fecha2, objetivo:objetivo1, especificacion:especificacion, dep:dep1, id:id,lugar:lugar, year:year}, //f de fecha y u de estado.
+            data: {fecha:fecha,fecha2:fecha2, objetivo:objetivo1, especificacion:especificacion, dep:dep1, id:id, jefe_a_cargo:jefeACargo, lugar:lugar, year:year}, //f de fecha y u de estado.
 
             beforeSend:function(){
                           //$('#response').html('<span class="text-info">Loading response...</span>');
@@ -206,4 +207,3 @@ function add_solicitud1(userid, dep) {
 
 
 //SOLICITURD add_solicitud_manual
-

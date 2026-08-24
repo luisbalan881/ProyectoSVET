@@ -85,52 +85,36 @@ if (function_exists('login_check') && login_check()):
          </div>
        
          
-         <div class="block-content">
-             <table class="table table-bordered table-condensed table-striped js-dataTable-Report1" >  
-                 <thead>
-                     <tr>
-                         
-                         <th>Fecha de salida</th>
-                          <th class="text-center">Fecha de retorno.</th>
-                         <th class="text-center">Nombre servidor publico.</th>
-                         
-                         <th class="hidden-xs text-center">Destino</th>
-                         <th class="hidden-xs text-center">Objetivo del viaje</th>
-                         <th class="text-center">costo</th>
-                           <th class="text-center">Formulario Asignado</th>
-                            <th class="text-center">Accion</th>
-                     </tr>
-                 </thead>
-                 <tbody>
+          <div class="block-content">
+              <table class="table table-bordered table-condensed table-striped js-dataTable-Report1" data-year-filter="true" data-year-column="0" >  
+                  <thead>
+                      <tr>
+                          
+                          <th>Fecha de salida</th>
+                           <th class="text-center">Fecha de retorno.</th>
+                          <th class="text-center">Nombre servidor publico.</th>
+                          
+                          <th class="hidden-xs text-center">Destino</th>
+                          <th class="hidden-xs text-center">Objetivo del viaje</th>
+                          <th class="text-center">costo</th>
+                          <th class="text-center">Formulario Asignado</th>
+                      </tr>
+                  </thead>
+                  <tbody>
                      <?php
                    //  if ($user_id == 177)
                      //    {
                        foreach ($reportenombramientos as $nombramientoReporte){
                        
                                 echo '<tr>';
-                           
-                                echo '<td class="text-center">'.fecha_dmy($nombramientoReporte['FechaRetorno']).'</td>';
-                               // echo '<td class="hidden-xs" ><a href="mailto:'.$nombramientoReporte['user_mail'].'">'.$nombramientoReporte['user_mail'].'</td>';
-                                echo '<td class="hidden-xs">'.fecha_dmy($nombramientoReporte['FechaRetorno']).'</td>';
-                                //echo '<td >'.$nombramientoReporte['user_nm1'].' '.$nombramientoReporte['user_nm2'].' '.$nombramientoReporte['user_ap1'].' '.$nombramientoReporte['user_ap2'].'</td>';
-                                 echo '<td class="hidden-xs">'.$nombramientoReporte['NombreServidorPublico'].'</td>';
-                               // echo '<td >'.$nombramientoReporte['NombreServidorPublico'].' '.$nombramientoReporte['NombreServidorPublico'].'</td>';
-                                echo '<td class="hidden-xs">'.$nombramientoReporte['Destino'].'</td>';
-                                echo '<td class="hidden-xs">'.$nombramientoReporte['ObjetivoDelViaje'].'</td>';
-                                // echo '<td class="hidden-xs">'.number_format($nombramientoReporte['CostoDeViaje'],2).'</td>';
-                                   echo '<td class="text-center" style="white-space: nowrap;">Q '.number_format($nombramientoReporte['CostoDeViaje'],2).'</td>';
-                               //echo '<td class="hidden-xs">'.$nombramientoReporte['objetivo'].'</td>';
-                              //  echo '</tr>';
-                                    echo '<td class="hidden-xs">'.$nombramientoReporte['FormularioAsignado'].'</td>';
-                                 echo '<td class="text-center" style="white-space: nowrap;">';
-                          //  echo '<div class="btn-group">';
-                                                                                                                                                  
-                                
-                                 
-                            echo ' ';
-                            echo '</div>';
-                            echo '</td>';
-                            echo '</tr>';
+                                echo '<td class="text-center">' . fecha_dmy($nombramientoReporte['FechaSalida']) . '</td>';
+                                echo '<td class="text-center">' . fecha_dmy($nombramientoReporte['FechaRetorno']) . '</td>';
+                                echo '<td class="hidden-xs">' . $nombramientoReporte['NombreServidorPublico'] . '</td>';
+                                echo '<td class="hidden-xs">' . $nombramientoReporte['Destino'] . '</td>';
+                                echo '<td class="hidden-xs">' . $nombramientoReporte['ObjetivoDelViaje'] . '</td>';
+                                echo '<td class="text-center" style="white-space: nowrap;">Q ' . number_format($nombramientoReporte['CostoDeViaje'],2) . '</td>';
+                                echo '<td class="hidden-xs">' . $nombramientoReporte['FormularioAsignado'] . '</td>';
+                                echo '</tr>';
       
                                 
                                 }

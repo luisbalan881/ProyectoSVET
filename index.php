@@ -4,111 +4,310 @@
 <?php
 include_once 'inc/functions.php';
 sec_session_start();
+
 if (function_exists('login_check') && login_check()) {
-        header("Location: inicio.php");
-}else{
-    if ( !empty($_GET['error'])) {
+    header("Location: inicio.php");
+    exit();
+} else {
+    if (!empty($_GET['error'])) {
         $id = $_REQUEST['error'];
         $message = NULL;
-        switch ($id){
+        switch ($id) {
             case 1:
-                $message = "Usuario o contraseña ingresada no son correctos.";
-            break;
+                $message = "Usuario o contraseña no son correctos.";
+                break;
             default:
                 $message = NULL;
-            break;
+                break;
         }
     }
 ?>
-<!-- Login Content -->
-<div class="bg-white pulldown">
-    <div class="content content-boxed overflow-hidden">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="push-30-t push-50 animated fadeIn">
-                    <!-- Login Title -->
-                    <div class="text-center">
-                        <img src="assets/img/escudo_logo.png" height="100" class="animated fadeInDown .retraso1" />
-                        <p class="text-muted push-15-t">Sistema Control Administrativo SVET</p>
-                    </div>
-                    <!-- END Login Title -->
-                    <?php
-                    if(isset($message)){
-                        echo '<div class="form-group">';
-                        echo '<div class="alert alert-danger alert-dimissable">';
-                        echo '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>';
-                        echo '<h3 class="font-w300 push-15">Error</h3>';
-                        echo '<p>';
-                        echo $message;
-                        echo '</p>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                    ?>
-                    <!-- Login Form -->
-                    <form class="js-validation-login form-horizontal push-30-t form-signin" action="process_login.php" method="post" name="login_form">
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="form-material input-group floating">
-                                    <input class="form-control" type="text" id="email" name="email" autofocus>
-                                    <label for="email">Usuario</label>
-                                    <span class="input-group-addon">@svet.gob.gt</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <div class="form-material form-material-primary floating">
-                                    <input class="form-control" type="password" id="password" name="password">
-                                    <label for="password">Contraseña</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group push-30-t">
-                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                                <button class="btn btn-sm btn-block btn-primary" type="submit" onclick="formhash(this.form, this.form.password);">Ingresar</button>
-                            </div>
-                        </div>
-						<div><a href="http://192.168.4.92:8080/invviolencia/index.php">Inventario Violencia Sexual</a></div>
-						<div><a href="http://192.168.4.92:8080/invexplotacion/index.php">Inventario Explotación Sexual</a></div>
-						<div><a href="http://192.168.4.92:8080/invtrata/index.php">Inventario Trata de Personas</a></div>
-						  <div><a href="http://192.168.4.25:8082/svet_sis_029/index.php">Reconocimiento de gastos </a></div>
-						   <div><a href="http://138.94.253.162:8080/roomctrl/index.php">Reservas y Solicitudes </a></div>
-						   <div><a href="http://138.94.253.162:8080/inventario/index.php">Direcciones </a></div>
 
-						</form>
-                    <!-- END Login Form -->
+<style>
+    :root {
+        --svet-blue-dark: #002d5f;
+        --svet-blue-light: #0056b3;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+    }
 
+    body {
+        background-color: #ffffff !important;
+        margin: 0;
+        height: 100vh;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        overflow-x: hidden;
+    }
 
-                    
-                </div>
+    .split-container {
+        display: flex;
+        flex-wrap: wrap;
+        min-height: 100vh;
+    }
+
+    /* --- SECCIÓN IZQUIERDA: DISEÑO INSTITUCIONAL --- */
+    .left-side {
+        flex: 1.2;
+        background: linear-gradient(135deg, var(--svet-blue-dark) 0%, var(--svet-blue-light) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        color: white;
+        min-width: 450px;
+        position: relative;
+    }
+
+    .left-content-wrapper {
+        max-width: 550px;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .brand-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .brand-header img {
+        background: white;
+        padding: 15px;
+        border-radius: 22px;
+        max-height: 110px;
+        margin-bottom: 15px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .brand-header h1 {
+        font-size: 26px;
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: -0.5px;
+        text-transform: uppercase;
+    }
+
+    .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .modern-card-btn {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 20px;
+        color: white !important;
+        text-decoration: none !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .modern-card-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .card-icon-circle {
+        width: 50px;
+        height: 50px;
+        background: white;
+        color: var(--svet-blue-dark);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .modern-card-btn strong {
+        font-size: 14px;
+        line-height: 1.2;
+        margin-bottom: 5px;
+    }
+
+    .modern-card-btn span {
+        font-size: 11px;
+        opacity: 0.8;
+    }
+
+    /* --- SECCIÓN DERECHA: LOGIN --- */
+    .right-side {
+        flex: 0.8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        background-color: #f0f4f8;
+        min-width: 350px;
+    }
+
+    .login-container {
+        max-width: 380px;
+        width: 100%;
+        background: white;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 45, 95, 0.1);
+    }
+
+    .login-header-text {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-header-text h2 {
+        color: var(--svet-blue-dark);
+        font-weight: 800;
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .login-header-text p {
+        color: #64748b;
+        font-size: 13px;
+        margin-top: 5px;
+        font-weight: 600;
+    }
+
+    .form-control-custom {
+        border-radius: 12px;
+        border: 1px solid #e1e8ef;
+        padding: 12px 15px;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .btn-login-action {
+        background: var(--svet-blue-dark);
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        width: 100%;
+        margin-top: 15px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-login-action:hover {
+        background: var(--svet-blue-light);
+        box-shadow: 0 10px 20px rgba(0, 86, 179, 0.2);
+        color: white;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .split-container { flex-direction: column; }
+        .left-side { min-width: 100%; padding: 40px 20px; order: 2; }
+        .right-side { min-width: 100%; padding: 60px 20px; order: 1; }
+        .button-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+        .button-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<div class="split-container">
+    
+    <div class="left-side">
+        <div class="left-content-wrapper animated fadeInUp">
+            <div class="brand-header">
+                <img src="assets/img/escudo_logo.png" alt="SVET">
+                <h1>Gestión Institucional</h1>
+                <p>Secretaría contra la Violencia Sexual, <br> Explotación y Trata de Personas</p>
+            </div>
+
+            <div class="button-grid">
+                <a href="http://192.168.4.92:8080/gestor-expedientes/login" class="modern-card-btn" target="_blank">
+                    <div class="card-icon-circle"><i class="fa fa-folder-open"></i></div>
+                    <strong>Gestor de Documentos</strong>
+                    <span>Expedientes Oficiales</span>
+                </a>
+
+                <a href="http://138.94.253.162:8080/roomctrl/index.php" class="modern-card-btn" target="_blank">
+                    <div class="card-icon-circle"><i class="fa fa-calendar-check-o"></i></div>
+                    <strong>Reservas y Solicitudes</strong>
+                    <span>Salas y Solicitudes</span>
+                </a>
+
+                <a href="http://138.94.253.162:8080/inventario/usuarios/login.php" class="modern-card-btn" target="_blank">
+                    <div class="card-icon-circle"><i class="fa fa-archive"></i></div>
+                    <strong>Inventario Direcciones</strong>
+                    <span>Control de Suministros</span>
+                </a>
+
+                <a href="http://192.168.4.25:8082/svet_sis_029/index.php" class="modern-card-btn" target="_blank">
+                    <div class="card-icon-circle"><i class="fa fa-briefcase"></i></div>
+                    <strong>Reconocimiento de Gastos 029</strong>
+                    <span>Sistema Institucional</span>
+                </a>
             </div>
         </div>
     </div>
+
+    <div class="right-side">
+        <div class="login-container animated fadeInRight">
+            <div class="login-header-text">
+                <h2>Acceso al Sistema</h2>
+                <p>Sistema Control Administrativo SVET</p>
+            </div>
+            
+            <?php if(isset($message)): ?>
+                <div class="alert alert-danger animated shake" style="border-radius: 12px; font-size: 13px;">
+                    <i class="fa fa-exclamation-circle"></i> <?php echo $message; ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="process_login.php" method="post" name="login_form">
+ 
+               <div class="form-group">
+
+    <label class="text-muted small"><b>USUARIO</b></label>
+    <div class="input-group">
+        <input class="form-control form-control-custom" type="text" name="email" placeholder="Su usuario" autofocus required style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+        
+        <span class="input-group-addon" style="border-radius: 0 12px 12px 0; background-color: #f8fbff; font-weight: bold; color: #002d5f; border: 1px solid #e1e8ef; border-left: none;">
+            @svet.gob.gt
+        </span>
+    </div>
 </div>
-<!-- END Login Content -->
 
-    
+                <div class="form-group">
+                    <label class="text-muted small"><b>CONTRASEÑA</b></label>
+                    <input class="form-control form-control-custom" type="password" name="password" placeholder="••••••••" required>
+                </div>
 
-<!-- Login Footer -->
-<div class="pulldown push-30-t text-center animated fadeInUp">
-    <small class="text-muted"><script>document.write(new Date().getFullYear())</script> &copy; <?php echo $one->name . ' ' . $one->version; ?></small>
+                <button class="btn btn-login-action" type="submit" onclick="formhash(this.form, this.form.password);">
+                    INGRESAR <i class="fa fa-arrow-right push-5-l"></i>
+                </button>
+            </form>
+
+            <div class="text-center" style="margin-top: 30px; opacity: 0.4; font-size: 11px;">
+                <script>document.write(new Date().getFullYear())</script> &copy; SVET Informática | v.<?php echo $one->version; ?>
+            </div>
+        </div>
+    </div>
+
 </div>
-<!-- END Login Footer -->
-
-
 
 <?php require 'inc/views/template_footer_start.php'; ?>
-
-<!-- Page JS Plugins -->
 <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="<?php echo $one->assets_folder; ?>/js/pages/base_pages_forms.js"></script>
 <script src="<?php echo $one->assets_folder; ?>/js/pages/base_pages_sha512.js"></script>
-
-<!-- Page JS Code -->
 <script src="<?php echo $one->assets_folder; ?>/js/pages/base_pages_login.js"></script>
-
-
 <?php require 'inc/views/template_footer_end.php'; ?>
 
 <?php } ?>

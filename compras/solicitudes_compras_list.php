@@ -221,7 +221,7 @@ sec_session_start();
                                        }                                       
                                        
                                           echo '<button title="Imprimir solicitud de compra" class="btn btn-personalizado outline" title="Descargar" ';
-                                      if($s['estado_solicitud']>=1 and ($user_id == 1058 or $user_id==10067) )
+                                      if($s['estado_solicitud']>=1 and ($user_id == 10098 or $user_id==10067) )
                                                                            // if(($s['estado_solicitud']==1 OR $s['estado_solicitud']==3) and ($user_id == 1058 or $user_id==9997) )
                                       //if ($nombramiento['status'] >= 2 and ($user_id == 9966 or $user_id==177) )//
                                       {

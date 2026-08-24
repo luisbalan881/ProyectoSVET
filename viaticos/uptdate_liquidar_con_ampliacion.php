@@ -23,6 +23,12 @@
             header("Location: index.php?ref=_2");
         }
 
+            $plazoLiquidacion = viaticos_liquidacion_plazo_por_nombramiento($id2);
+            if (!$plazoLiquidacion['allowed']) {
+                viaticos_render_liquidacion_bloqueada($plazoLiquidacion);
+                exit;
+            }
+
             
             
             //$departamentos = nom();

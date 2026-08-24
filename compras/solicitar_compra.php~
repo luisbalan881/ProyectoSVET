@@ -144,7 +144,7 @@
                                  <select class='form-control item_destino' id='txtd1' required>
                                 
                                 <option value="A1-001-0001"> A1-001-0001</option>
-                                <option value="A2-002-0002-0001"> A2-002-0001</option>
+                                <option value="A2-002-0001"> A2-002-0001</option>
                                  <option value="A2-002-0002"> A2-002-0002</option>
                                  
                                   <option value="A2-002-0005"> A2-002-0005</option>

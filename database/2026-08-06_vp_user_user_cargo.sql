@@ -1,0 +1,2 @@
+ALTER TABLE `vp_user`
+ADD COLUMN `user_cargo` VARCHAR(150) NULL DEFAULT NULL AFTER `user_nom`;

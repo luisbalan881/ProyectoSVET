@@ -1,4 +1,24 @@
 <?php
+function get_vp_user_firma_cargo_sql($alias = 'vp_user'){
+static $hasUserCargo = null;
+
+if ($hasUserCargo === null) {
+  $pdo = Database::connect();
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "SHOW COLUMNS FROM vp_user LIKE 'user_cargo'";
+  $p = $pdo->prepare($sql);
+  $p->execute();
+  $hasUserCargo = (bool) $p->fetch(PDO::FETCH_ASSOC);
+  Database::disconnect();
+}
+
+if ($hasUserCargo) {
+  return "COALESCE(NULLIF(" . $alias . ".user_cargo, ''), " . $alias . ".user_puesto)";
+}
+
+return $alias . ".user_puesto";
+}
+
 function get_solicitud_by_id1($solicitud){
 $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -65,7 +85,7 @@ return $solicitud1;
 function get_solicitud_by_id_encargado($solicitud){
 $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "SELECT CONCAT(vp_user.user_nm1,' ', vp_user.user_nm2,' ', vp_user.user_ap1,' ', vp_user.user_ap2) as encargado , vp_user.user_puesto
+$sql = "SELECT CONCAT(vp_user.user_nm1,' ', vp_user.user_nm2,' ', vp_user.user_ap1,' ', vp_user.user_ap2) as encargado , " . get_vp_user_firma_cargo_sql('vp_user') . " AS user_puesto
 FROM vs_nombramiento 
 join vp_user 
 on vs_nombramiento.id_funcionario2 = vp_user.user_id 

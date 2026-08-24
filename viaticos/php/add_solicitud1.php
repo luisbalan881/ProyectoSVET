@@ -13,6 +13,7 @@ $departamento = $_POST['dep'];  // cod nombramiento
 $lugares = $_POST['lugar'];  // lugares
 $year1 = $_POST['year'];  // Año del sistema (se sobrescribirá con el año de la fecha de inicio)
 $status = "1";
+$jefeACargo = isset($_POST['jefe_a_cargo']) ? trim($_POST['jefe_a_cargo']) : '';
 
 $id = $_POST['id'];   // persona peticion 
 $persona = User::get_empleado_datos_id($id);
@@ -27,6 +28,9 @@ $p1 = $pdo->prepare($sql1);
 $p1->execute(array($persona['dep_id']));
 $per_rol = $p1->fetch(PDO::FETCH_ASSOC);
 $enc = $per_rol['dep_encargado']; //perosona autoriza
+if ($jefeACargo !== '' && ctype_digit($jefeACargo)) {
+    $enc = (int) $jefeACargo;
+}
 $dep1 = $per_rol['dep'];
 
 $year1 = date('Y', strtotime($date1));

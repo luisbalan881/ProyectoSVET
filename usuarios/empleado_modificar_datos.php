@@ -389,6 +389,18 @@
                           </div>
                           <div class="col-xs-6">
                             <div class="form-material">
+                              <label for="user_cargo_firma">Cargo para firma en viáticos</label>
+                              <div class="input-group has-personalizado">
+                                <span class="input-group-addon" ><span class="fa fa-check"></span></span>
+                                <input class="form-control" type="text" id="user_cargo_firma" name="user_cargo_firma" value="<?php echo isset($persona['user_cargo']) ? $persona['user_cargo'] : ''; ?>" placeholder="Ej. Secretario Ejecutivo en funciones">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-xs-6">
+                            <div class="form-material">
                               <label for="fecha_posesion">Fecha Toma Posesión*</label>
                               <div class="input-group has-personalizado">
                                 <span class="input-group-addon" ><span class="fa fa-calendar-o"></span></span>

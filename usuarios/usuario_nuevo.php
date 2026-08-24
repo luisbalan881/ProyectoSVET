@@ -348,6 +348,18 @@
 
                           <div class="col-xs-6">
                               <div class="form-material">
+                                  <label for="user_cargo_firma">Cargo para firma en viaticos</label>
+                                  <div class="input-group has-personalizado">
+                                    <span class="input-group-addon" ><span class="fa fa-check"></span></span>
+                                    <input class="form-control"  type="text"  id="user_cargo_firma" name="user_cargo_firma" placeholder="Ej. Secretario Ejecutivo en funciones">
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-xs-6">
+                              <div class="form-material">
                                   <label for="user_puesto">Puesto Funcional</label>
                                   <div class="input-group has-personalizado">
                                     <span class="input-group-addon" ><span class="fa fa-check"></span></span>

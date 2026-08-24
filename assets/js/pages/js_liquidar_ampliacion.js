@@ -76,6 +76,17 @@ function add_formulario2(userid, dep, correlativo) {
                   },
                   success:function(data){
                     //alert(data);
+                    if (typeof data === 'string' && data.indexOf('ERROR:') === 0) {
+                      var mensajeError = data.substring(6);
+                      $('#loading1').fadeOut("slow");
+                      $('#loading').fadeOut("slow");
+                      if (typeof swal === 'function') {
+                        swal("Plazo vencido", mensajeError, "warning");
+                      } else {
+                        alert(mensajeError);
+                      }
+                      return;
+                    }
                     
                      setTimeout(function(){
                                                     $('#loading1').fadeOut("slow");
@@ -173,4 +184,3 @@ function add_formulario2(userid, dep, correlativo) {
 
 
 //SOLICITURD add_solicitud_manual
-

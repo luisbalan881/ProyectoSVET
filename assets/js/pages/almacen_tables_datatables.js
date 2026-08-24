@@ -199,8 +199,16 @@ var AlmacenTableDatatables = function() {
     };
 
 // reporte Nombramientos
-var initDataTableReport1 = function() {
-        jQuery('.js-dataTable-Report1').dataTable({
+    var initDataTableReport1 = function() {
+        jQuery('.js-dataTable-Report1').each(function() {
+            var $table = jQuery(this);
+            var enableYearFilter = $table.data('year-filter') === true || $table.data('year-filter') === 'true';
+            var yearColumnIndex = parseInt($table.data('year-column'), 10);
+            if (isNaN(yearColumnIndex)) {
+                yearColumnIndex = 0;
+            }
+
+            $table.DataTable({
             order: [],
             pageLength: 50,
             lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
@@ -235,7 +243,61 @@ var initDataTableReport1 = function() {
                         columns: [0,1,2,3,4,5,6]
                     }
                 }
-            ]
+            ],
+            initComplete: function() {
+                if (!enableYearFilter) {
+                    return;
+                }
+
+                var api = this.api();
+                var tableId = api.table().node().id || ('datatable-report1-' + yearColumnIndex);
+                var filterId = tableId + '-year-filter';
+                var $wrapper = jQuery(api.table().container());
+                var $searchContainer = $wrapper.find('.dataTables_filter');
+
+                if (!$searchContainer.length || $wrapper.find('#' + filterId).length) {
+                    return;
+                }
+
+                var years = [];
+                api.column(yearColumnIndex).data().each(function(value) {
+                    var text = jQuery('<div>').html(value).text().trim();
+                    var parts = text.split('-');
+                    var year = parts.length ? parts[parts.length - 1] : '';
+                    if (/^\d{4}$/.test(year) && jQuery.inArray(year, years) === -1) {
+                        years.push(year);
+                    }
+                });
+
+                years.sort();
+                years.reverse();
+
+                if (!years.length) {
+                    return;
+                }
+
+                var $yearFilter = jQuery(
+                    '<label class="dataTables-year-filter" style="margin-right: 15px; font-weight: normal;">' +
+                        '<span style="margin-right: 8px;">Año:</span>' +
+                        '<select id="' + filterId + '" class="form-control input-sm" style="display: inline-block; width: auto;">' +
+                            '<option value="">Todos</option>' +
+                        '</select>' +
+                    '</label>'
+                );
+                $yearFilter.find('span').html('A&ntilde;o:');
+
+                jQuery.each(years, function(_, year) {
+                    $yearFilter.find('select').append('<option value="' + year + '">' + year + '</option>');
+                });
+
+                $searchContainer.prepend($yearFilter);
+
+                $yearFilter.find('select').on('change', function() {
+                    var selectedYear = jQuery(this).val();
+                    api.column(yearColumnIndex).search(selectedYear ? selectedYear + '$' : '', true, false).draw();
+                });
+            }
+        });
         });
     };
 

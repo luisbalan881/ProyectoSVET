@@ -101,6 +101,9 @@ if (function_exists('login_check') && login_check()):
                        foreach ($nombramientos as $nombramiento){
                          //foreach ($personas as $persona){
                            // if($persona['ext_id'] > 0 && $nombramiento['user_status'] == 1){
+                                $plazoLiquidacion = viaticos_liquidacion_plazo_desde_fecha_fin($nombramiento['fecha_fin']);
+                                $tituloPlazoLiquidacion = htmlspecialchars($plazoLiquidacion['message'], ENT_QUOTES, 'UTF-8');
+                                $estadoExtraLiquidacion = $plazoLiquidacion['allowed'] ? '' : ' <span class="label label-danger" title="' . $tituloPlazoLiquidacion . '">' . (($plazoLiquidacion['state'] == 'expired') ? 'Plazo vencido' : 'No disponible') . '</span>';
                                 echo '<tr>';
                                 echo '<td class="hidden-xs">'.$nombramiento['id_nombramiento'].'</td>';
                                 //echo '<td >'.$nombramiento['cod_nombramiento'].' '.fecha_dmy($nombramiento['fecha']).'</td>';
@@ -276,18 +279,30 @@ if (function_exists('login_check') && login_check()):
                                  
                                   if ($nombramiento['status'] == 2)
                                 {
+                                    if ($plazoLiquidacion['allowed']) {
                                 // echo '<span data-toggle="tooltip" title="Liquidar"><a class="btn btn-default"  title="nota: este formulario no es para liquidar con ampliacón"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/solicitar_viaticos_2.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a></span>';
 								echo '<span data-toggle="tooltip" title="Liquidar"><a class="btn btn-default"  title="nota importante: este formulario no es para liquidar con ampliación debe realizar una nueva solicitud en + "  data-toggle="modal" data-target="#modal-remoto-lgg1" href="viaticos/solicitar_viaticos_2.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-check-square text-warning"></i></a></span> <span data-toggle="tooltip" title="solicitar ampliación"> <a class="btn btn-default"  title="solicitar liquidación con ampliación"  data-toggle="modal" data-target="#modal-remoto-lgg1" href="viaticos/solicitud_ampliacion.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-plus-circle text-success"></i></a></span>';
+                                    } else {
+                                        echo '<span data-toggle="tooltip" title="' . $tituloPlazoLiquidacion . '"><button class="btn btn-default" disabled><i class="fa fa-lock text-danger"></i></button></span>';
+                                    }
                                   }
                                     if ($nombramiento['status'] == 6)
                                 {
+                                    if (!$plazoLiquidacion['allowed']) {
+                                        echo '<span data-toggle="tooltip" title="' . $tituloPlazoLiquidacion . '"><button class="btn btn-default" disabled><i class="fa fa-lock text-danger"></i></button></span>';
+                                    } else {
                                  echo '<span data-toggle="tooltip" title="Liquidar con amplicacion"><a class="btn btn-default"  title=" liquidación"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/liquidarConAmpliacion.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a></span>';
+                                    }
                                   }
                                     //liquidar_sin_anticipio.php
                                  
 				  if ($nombramiento['status'] ==4)
                                 {
+                                    if (!$plazoLiquidacion['allowed']) {
+                                        echo '<span data-toggle="tooltip" title="' . $tituloPlazoLiquidacion . '"><button class="btn btn-default" disabled><i class="fa fa-lock text-danger"></i></button></span>';
+                                    } else {
                                  echo '<span data-toggle="tooltip" title="Liquidar sin anticipo"><a class="btn btn-default"  title="liquidación"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/liquidar_sin_anticipo.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a></span>';
+                                    }
                                   } //liquidar_sin_anticipio.php
                                  						 
 								 
@@ -311,24 +326,32 @@ if (function_exists('login_check') && login_check()):
                                     //echo'-liquidado';
                                 }
                                 else if ($nombramiento['status'] == 2 ){
-                                    echo '<span class="label label-primary">Autorizado (a liquidar)</span> </td>';
+                                    echo '<span class="label label-primary">Autorizado (a liquidar)</span>' . $estadoExtraLiquidacion . ' </td>';
                                     //echo'-liquidado';
                                 }
                                 else if ($nombramiento['status'] == 3 ){
-                                    echo '<span class="label label-success">Liquidado <a class="btn btn-default"  title="Editar liquidacion"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/liquidar_viaticos_editable.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a> </span> </td>';
+                                    echo '<span class="label label-success">Liquidado';
+                                    if ($plazoLiquidacion['allowed']) {
+                                        echo ' <a class="btn btn-default"  title="Editar liquidacion"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/liquidar_viaticos_editable.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a>';
+                                    }
+                                    echo '</span>' . $estadoExtraLiquidacion . ' </td>';
                                     
                                     //echo'-liquidado';
                                 }
                                  else if ($nombramiento['status'] == 4 ){
-                                    echo '<span class="label label-success">Sin Anticipo</span> </td>';
+                                    echo '<span class="label label-success">Sin Anticipo</span>' . $estadoExtraLiquidacion . ' </td>';
                                     //echo'-liquidado';
                                 }
                                  else if ($nombramiento['status'] == 5 ){
-                                    echo '<span class="label label-success">Liquidado Sin Anticipo<a class="btn btn-default"  title="Editar liquidacion sin anticipo"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/update_liquidar_sin_anticipo.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a> </span> </td>';
+                                    echo '<span class="label label-success">Liquidado Sin Anticipo';
+                                    if ($plazoLiquidacion['allowed']) {
+                                        echo '<a class="btn btn-default"  title="Editar liquidacion sin anticipo"  data-toggle="modal" data-target="#modal-remoto" href="viaticos/update_liquidar_sin_anticipo.php?id='.$nombramiento['id_nombramiento'].'"><i class="fa fa-pencil text-warning"></i></a>';
+                                    }
+                                    echo '</span>' . $estadoExtraLiquidacion . ' </td>';
                                     //echo'-liquidado';
                                 }
                                 else if ($nombramiento['status'] == 6 ){
-                                    echo '<span class="label label-primary">Autorizado con ampliacion (a liquidar)</span> </td>';
+                                    echo '<span class="label label-primary">Autorizado con ampliacion (a liquidar)</span>' . $estadoExtraLiquidacion . ' </td>';
                                     //echo'-liquidado';
                                 }
                                  else if ($nombramiento['status'] == 7 ){

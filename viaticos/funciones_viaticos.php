@@ -949,7 +949,7 @@ function nuevo_req() {
 function detalleComision_info($id){
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT tdesayunos, talmuerzos, tcenas,thospedaje,actividades, logros, objetivod, ampliacion_cantidad, ampliacion_tiempo  FROM vs_nombramiento where id_nombramiento = ? ORDER BY id_nombramiento";
+    $sql = "SELECT tdesayunos, talmuerzos, tcenas, thospedaje, (COALESCE(tdesayunos,0)+COALESCE(talmuerzos,0)+COALESCE(tcenas,0)+COALESCE(thospedaje,0)) as total_liq, actividades, logros, objetivod, ampliacion_cantidad, ampliacion_tiempo  FROM vs_nombramiento where id_nombramiento = ? ORDER BY id_nombramiento";
     $q = $pdo->prepare($sql);
     $q->execute(array($id));
     $bitacora = $q->fetch(PDO::FETCH_ASSOC);
@@ -968,6 +968,158 @@ function detallenombramieto_info($id){
     $bitacora = $q->fetch(PDO::FETCH_ASSOC);
     Database::disconnect();
     return $bitacora;
+}
+
+function viaticos_sumar_dias_habiles($fechaBase, $diasHabiles){
+    $fecha = DateTime::createFromFormat('Y-m-d', date('Y-m-d', strtotime($fechaBase)));
+    if (!$fecha) {
+        return null;
+    }
+
+    $contados = 0;
+    while ($contados < (int)$diasHabiles) {
+        $fecha->modify('+1 day');
+        $diaSemana = (int)$fecha->format('N');
+        if ($diaSemana < 6) {
+            $contados++;
+        }
+    }
+
+    return $fecha->format('Y-m-d');
+}
+
+function viaticos_liquidacion_plazo_desde_fecha_fin($fechaFin, $fechaReferencia = null){
+    $fechaFinNormalizada = date('Y-m-d', strtotime($fechaFin));
+    $fechaHoy = $fechaReferencia ? date('Y-m-d', strtotime($fechaReferencia)) : date('Y-m-d');
+    $diasHabilesPlazo = 30;
+
+    if ($fechaFinNormalizada === '1970-01-01') {
+        return array(
+            'allowed' => false,
+            'state' => 'invalid',
+            'fecha_fin' => null,
+            'deadline' => null,
+            'message' => 'No se pudo determinar la fecha fin de la comision.'
+        );
+    }
+
+    $fechaLimiteActualizada = viaticos_sumar_dias_habiles($fechaFinNormalizada, $diasHabilesPlazo);
+
+    if ($fechaHoy < $fechaFinNormalizada) {
+        return array(
+            'allowed' => false,
+            'state' => 'pending_return',
+            'fecha_fin' => $fechaFinNormalizada,
+            'deadline' => $fechaLimiteActualizada,
+            'message' => 'La liquidacion estara disponible a partir del ' . fecha_dmy($fechaFinNormalizada) . ' y vencera el ' . fecha_dmy($fechaLimiteActualizada) . '.'
+        );
+    }
+
+    if ($fechaHoy > $fechaLimiteActualizada) {
+        return array(
+            'allowed' => false,
+            'state' => 'expired',
+            'fecha_fin' => $fechaFinNormalizada,
+            'deadline' => $fechaLimiteActualizada,
+            'message' => 'El plazo de ' . $diasHabilesPlazo . ' dias habiles para liquidar vencio el ' . fecha_dmy($fechaLimiteActualizada) . '.'
+        );
+    }
+
+    return array(
+        'allowed' => true,
+        'state' => 'open',
+        'fecha_fin' => $fechaFinNormalizada,
+        'deadline' => $fechaLimiteActualizada,
+        'message' => 'La liquidacion esta habilitada hasta el ' . fecha_dmy($fechaLimiteActualizada) . '.'
+    );
+
+    if ($fechaFinNormalizada === '1970-01-01') {
+        return array(
+            'allowed' => false,
+            'state' => 'invalid',
+            'fecha_fin' => null,
+            'deadline' => null,
+            'message' => 'No se pudo determinar la fecha fin de la comisión.'
+        );
+    }
+
+    $fechaLimite = viaticos_sumar_dias_habiles($fechaFinNormalizada, $diasHabilesPlazo);
+    $mensajePlazoVencido = 'El plazo de ' . $diasHabilesPlazo . ' dÃ­as hÃ¡biles para liquidar venciÃ³ el ' . fecha_dmy($fechaLimite) . '.';
+
+    $mensajePlazoVencido = 'El plazo de ' . $diasHabilesPlazo . ' dias habiles para liquidar vencio el ' . fecha_dmy($fechaLimite) . '.';
+
+    if ($fechaHoy > $fechaLimite) {
+        return array(
+            'allowed' => false,
+            'state' => 'expired',
+            'fecha_fin' => $fechaFinNormalizada,
+            'deadline' => $fechaLimite,
+            'message' => $mensajePlazoVencido
+        );
+    }
+
+    if ($fechaHoy < $fechaFinNormalizada) {
+        return array(
+            'allowed' => false,
+            'state' => 'pending_return',
+            'fecha_fin' => $fechaFinNormalizada,
+            'deadline' => $fechaLimite,
+            'message' => 'La liquidación estará disponible a partir del ' . fecha_dmy($fechaFinNormalizada) . ' y vencerá el ' . fecha_dmy($fechaLimite) . '.'
+        );
+    }
+
+    if ($fechaHoy > $fechaLimite) {
+        return array(
+            'allowed' => false,
+            'state' => 'expired',
+            'fecha_fin' => $fechaFinNormalizada,
+            'deadline' => $fechaLimite,
+            'message' => 'El plazo de 15 días hábiles para liquidar venció el ' . fecha_dmy($fechaLimite) . '.'
+        );
+    }
+
+    return array(
+        'allowed' => true,
+        'state' => 'open',
+        'fecha_fin' => $fechaFinNormalizada,
+        'deadline' => $fechaLimite,
+        'message' => 'La liquidación está habilitada hasta el ' . fecha_dmy($fechaLimite) . '.'
+    );
+}
+
+function viaticos_liquidacion_plazo_por_nombramiento($idNombramiento, $fechaReferencia = null){
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "SELECT fecha_fin FROM vs_nombramiento WHERE id_nombramiento = ?";
+    $q = $pdo->prepare($sql);
+    $q->execute(array($idNombramiento));
+    $nombramiento = $q->fetch(PDO::FETCH_ASSOC);
+    Database::disconnect();
+
+    if (!$nombramiento || empty($nombramiento['fecha_fin'])) {
+        return array(
+            'allowed' => false,
+            'state' => 'not_found',
+            'fecha_fin' => null,
+            'deadline' => null,
+            'message' => 'No se encontró la fecha fin de la comisión.'
+        );
+    }
+
+    return viaticos_liquidacion_plazo_desde_fecha_fin($nombramiento['fecha_fin'], $fechaReferencia);
+}
+
+function viaticos_render_liquidacion_bloqueada($plazoLiquidacion, $titulo = 'Formulario de Liquidación'){
+    $mensaje = isset($plazoLiquidacion['message']) ? htmlspecialchars($plazoLiquidacion['message'], ENT_QUOTES, 'UTF-8') : 'La liquidación no está disponible.';
+    echo '<!DOCTYPE html>';
+    echo '<html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>' . htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8') . '</title></head><body>';
+    echo '<div class="block-content" style="position: relative; padding: 20px 25px 25px;">';
+    echo '<button type="button" class="close" aria-label="Cerrar" data-dismiss="modal" onclick="if (window.jQuery) { jQuery(\'.modal.in\').modal(\'hide\'); jQuery(\'.modal-backdrop\').remove(); } return false;" style="position: absolute; top: 10px; right: 15px; font-size: 28px; line-height: 1; opacity: 1;"><span aria-hidden="true">&times;</span></button>';
+    echo '<h3>' . htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8') . '</h3>';
+    echo '<div class="alert alert-warning">' . $mensaje . '</div>';
+    echo '<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal" onclick="if (window.jQuery) { jQuery(\'.modal.in\').modal(\'hide\'); jQuery(\'.modal-backdrop\').remove(); } return false;">Cerrar</button></div>';
+    echo '</div>';
+    echo '</body></html>';
 }
 
 
@@ -1344,4 +1496,3 @@ function kardex_anular($id){
     $q->execute(array($id));
     Database::disconnect();
 }
-

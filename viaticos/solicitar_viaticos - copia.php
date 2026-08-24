@@ -12,7 +12,6 @@
             //$departamentos = nom();
             $tipo = tipo_viaticos();
             $tipo2 = tipo_viaticos2();
-            $firmantes = personas();
             $persona = User::getByUserId($id);
 
 
@@ -129,27 +128,6 @@
 
                           </div>
 
-                    </div>
-
-                    <div class="col-xs-5">
-                          <div class="has-personalizado">
-                            <label for="jefe_a_cargo">Jefe a cargo (Opcional)</label>
-                            <div class="input-group has-personalizado">
-                              <span class="input-group-addon" ><span class="fa fa-user"></span></span>
-                              <select name="jefe_a_cargo" id="jefe_a_cargo" data-placeholder="Usar jefe asignado automaticamente" class="chosen-select-width col-xs-12 form-control" tabindex="6">
-                                <option value=""></option>
-                                <?php
-                                foreach ($firmantes as $firmante):
-                                    if ((int)$firmante['user_status'] !== 1){
-                                        continue;
-                                    }
-                                    $nombreFirmante = trim($firmante['user_nm1'] . ' ' . $firmante['user_nm2'] . ' ' . $firmante['user_ap1'] . ' ' . $firmante['user_ap2']);
-                                    echo '<option value="' . $firmante['user_id'] . '">' . $nombreFirmante . ' (' . $firmante['dep_nm'] . ')</option>';
-                                endforeach
-                                ?>
-                              </select>
-                            </div>
-                          </div>
                     </div>
                   </div>
 <div class="form-group">

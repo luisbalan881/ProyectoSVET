@@ -86,7 +86,7 @@ if (function_exists('login_check') && login_check()):
        
          
          <div class="block-content">
-             <table class="table table-bordered table-condensed table-striped js-dataTable-Report1" >  
+             <table class="table table-bordered table-condensed table-striped js-dataTable-Report1" data-year-filter="true" data-year-column="0" >  
                  <thead>
                      <tr>
                          
@@ -98,7 +98,6 @@ if (function_exists('login_check') && login_check()):
                          <th class="hidden-xs text-center">Objetivo del viaje</th>
                          <th class="text-center">costo</th>
                            <th class="text-center">Formulario Asignado</th>
-                            <th class="text-center">Accion</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -113,7 +112,7 @@ if (function_exists('login_check') && login_check()):
                                 //echo '<td >'.$nombramientoReporte['cod_nombramiento'].' '.fecha_dmy($nombramientoReporte['fecha']).'</td>';
                                 //echo '<td >'.$nombramientoReporte['user_nm1'].' '.$nombramientoReporte['user_nm2'].' '.$nombramientoReporte['user_ap1'].' '.$nombramientoReporte['user_ap2'].'</td>';
                                
-                                echo '<td class="text-center">'.fecha_dmy($nombramientoReporte['FechaRetorno']).'</td>';
+                                echo '<td class="text-center">'.fecha_dmy($nombramientoReporte['FechaSalida']).'</td>';
                                // echo '<td class="hidden-xs" ><a href="mailto:'.$nombramientoReporte['user_mail'].'">'.$nombramientoReporte['user_mail'].'</td>';
                                 echo '<td class="hidden-xs">'.fecha_dmy($nombramientoReporte['FechaRetorno']).'</td>';
                                 //echo '<td >'.$nombramientoReporte['user_nm1'].' '.$nombramientoReporte['user_nm2'].' '.$nombramientoReporte['user_ap1'].' '.$nombramientoReporte['user_ap2'].'</td>';
@@ -126,6 +125,8 @@ if (function_exists('login_check') && login_check()):
                                //echo '<td class="hidden-xs">'.$nombramientoReporte['objetivo'].'</td>';
                               //  echo '</tr>';
                                     echo '<td class="hidden-xs">'.$nombramientoReporte['FormularioAsignado'].'</td>';
+                                    echo '</tr>';
+                                    continue;
                                  echo '<td class="text-center" style="white-space: nowrap;">';
                           //  echo '<div class="btn-group">';
                        //     echo '<span data-toggle="tooltip" title="Revisar"><a class="btn btn-default" '.(($nombramientoReporte['status'] == 1 )?' href="almacen/requisicion_impresion.php?id='.$nombramientoReporte['id_nombramiento'].'" target="_blank" ':'href="#" disabled').'><i class="fa fa-print text-info"></i></a></span>';

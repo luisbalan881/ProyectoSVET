@@ -38,6 +38,7 @@
               dep_id=$('#dep_id').val();
               user_puesto=$('#user_puesto').val();
               user_cargo=$('#user_cargo').val();
+              user_cargo_firma=$('#user_cargo_firma').val();
               nacionalidad=$('#nacionalidad').val();
 
               user_id=creador;
@@ -76,6 +77,7 @@
                 dep_id:dep_id,
                 user_puesto:user_puesto,
                 user_cargo:user_cargo,
+                user_cargo_firma:user_cargo_firma,
                 nacionalidad:nacionalidad,
                 user_id:user_id,
                 user_acuerdo:user_acuerdo,
